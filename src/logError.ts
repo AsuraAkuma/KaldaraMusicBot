@@ -1,9 +1,10 @@
 import fs from 'fs';
+import path from 'path';
 
 export default async function logError(err: Error, filename: string) {
     console.log(err);
     const today = new Date();
-    const errorFileName = `C:\\Github\\KaldaraMusicBot\\logs\\${today.getMonth()}-${today.getDate()}-${today.getFullYear()}_error.log`;
+    const errorFileName = path.resolve(`./logs/${today.getMonth()}-${today.getDate()}-${today.getFullYear()}_error.log`);
     if (!fs.existsSync(errorFileName)) {
         fs.writeFileSync(errorFileName, `Start of error log: ${today.toUTCString()}\nFormat: [Timestamp] [Filename] Error: ErrorMessage\n`, { flag: 'a' });
     }
