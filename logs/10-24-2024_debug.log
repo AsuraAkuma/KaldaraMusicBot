@@ -1,0 +1,14 @@
+Start of debug log: Sun, 24 Nov 2024 19:47:47 GMT
+Format: [Timestamp] Message
+
+[Sun, 24 Nov 2024 19:47:47 GMT] Created settings for guild (1221985499158286366)
+
+[Sun, 24 Nov 2024 20:00:22 GMT] Updated channelId for guild (1221985499158286366): null -> 1221985499158286369
+
+[Sun, 24 Nov 2024 20:08:50 GMT] Updated djRoleId for guild (1221985499158286366): null -> 1282629386306322494
+
+[Sun, 24 Nov 2024 20:10:35 GMT] Created settings for guild (1221985499158286366)
+
+[Sun, 24 Nov 2024 20:10:35 GMT] Updated djRoleId for guild (1221985499158286366): undefined -> 1282629386306322494
+
+[Sun, 24 Nov 2024 20:10:47 GMT] Updated channelId for guild (1221985499158286366): null -> 1221985499158286369

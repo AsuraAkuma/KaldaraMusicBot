@@ -1,0 +1,12 @@
+Start of error log: Sun, 24 Nov 2024 18:47:21 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Sun, 24 Nov 2024 18:47:21 GMT] [settings\settings.ts] Error: test error
+
+
+[Sun, 24 Nov 2024 19:21:27 GMT] [settings\settings.ts] ValidationError: channelId: Path `channelId` is required., djRoleId: Path `djRoleId` is required.
+
+
+[Sun, 24 Nov 2024 19:25:01 GMT] [settings\settings.ts] ValidationError: channelId: Path `channelId` is required., djRoleId: Path `djRoleId` is required.
+
+[Sun, 24 Nov 2024 19:25:38 GMT] [settings\settings.ts] MongoServerError: The '_id' value cannot be of type array

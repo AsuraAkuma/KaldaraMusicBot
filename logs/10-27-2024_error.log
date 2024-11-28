@@ -1,0 +1,29 @@
+Start of error log: Wed, 27 Nov 2024 14:48:52 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Wed, 27 Nov 2024 14:48:52 GMT] [music\playlist.ts] TypeError: Cannot read properties of undefined (reading '_id')
+
+[Wed, 27 Nov 2024 15:25:58 GMT] [music\playlist.ts] Error: ValidationError: description: Path `description` is required., thumbnail: Path `thumbnail` is required.
+
+[Wed, 27 Nov 2024 15:44:21 GMT] [select.ts] Error: Received one or more errors
+
+[Wed, 27 Nov 2024 16:08:29 GMT] [music\playlist.ts] Error: While parsing playlist url
+1 unavailable video is hidden
+
+[Wed, 27 Nov 2024 16:10:56 GMT] [music\playlist.ts] Error: While parsing playlist url
+1 unavailable video is hidden
+
+[Wed, 27 Nov 2024 16:12:31 GMT] [music\playlist.ts] Error: While parsing playlist url
+1 unavailable video is hidden
+
+[Wed, 27 Nov 2024 22:30:49 GMT] [music\playlist.ts] CastError: Cast to embedded failed for value "UiNpyDPhb7U" (type string) at path "songs" because of "ObjectParameterError"
+
+[Wed, 27 Nov 2024 23:46:48 GMT] [music\play.ts] Error: ffmpeg exited with code 3199971767: Error opening input file pipe:0.
+Error opening input files: Invalid data found when processing input
+
+
+[Thu, 28 Nov 2024 00:11:09 GMT] [music\queue.ts] TypeError: Cannot read properties of undefined (reading 'url')
+
+[Thu, 28 Nov 2024 00:16:49 GMT] [] TypeError: Cannot read properties of undefined (reading 'getBufferedResource')
+
+[Thu, 28 Nov 2024 00:19:01 GMT] [] TypeError: Cannot read properties of undefined (reading 'getBufferedResource')

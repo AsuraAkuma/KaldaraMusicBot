@@ -1,0 +1,12 @@
+Start of error log: Tue, 26 Nov 2024 02:34:47 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Tue, 26 Nov 2024 02:34:47 GMT] [music\play.ts] Error: No songs were found.
+
+[Tue, 26 Nov 2024 03:13:49 GMT] [music\play.ts] TypeError: Cannot read properties of undefined (reading 'length')
+
+[Tue, 26 Nov 2024 03:15:20 GMT] [music\play.ts] TypeError: Cannot read properties of undefined (reading 'length')
+
+[Tue, 26 Nov 2024 05:34:52 GMT] [music\play.ts] Error: ffmpeg exited with code 4294967283: Error opening output file ./src/temp/C7cczTyQ4iY-temp_audio.pcm.
+Error opening output files: Permission denied
+

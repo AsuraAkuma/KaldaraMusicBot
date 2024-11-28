@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true, // Skip type checking for node_modules (often useful for IntelliSense issues)
+        "resolveJsonModule": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ] // Ensure the type definitions are included
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

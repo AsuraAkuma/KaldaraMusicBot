@@ -1,0 +1,470 @@
+Start of debug log: Wed, 27 Nov 2024 15:16:13 GMT
+Format: [Timestamp] Message
+
+[Wed, 27 Nov 2024 15:16:13 GMT] Added song (Lr0lktJJvh8).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (x_UhvKWG7zQ).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (ajtRtR4X-S0).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (_Oo-HjS3kD0).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (5UBfGQhQPIU).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (LXAvbmNHWdQ).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (DL8tIU_CfOE).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (sVSLjD4ty5A).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (4VljYPS0d6g).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (7tOqUtSTF2w).
+
+[Wed, 27 Nov 2024 16:03:31 GMT] Added song (MI1VzC-rzxs).
+
+[Wed, 27 Nov 2024 16:05:34 GMT] Added song (LGoWmhNKrsY).
+
+[Wed, 27 Nov 2024 16:07:54 GMT] Added song (JpIlnaAmiCg).
+
+[Wed, 27 Nov 2024 16:07:54 GMT] Added song (1JA4QNmpteU).
+
+[Wed, 27 Nov 2024 16:07:54 GMT] Added song (_THBex8DItY).
+
+[Wed, 27 Nov 2024 16:07:54 GMT] Added song (U84gJdTewJc).
+
+[Wed, 27 Nov 2024 16:07:54 GMT] Added song (gRYn89626DM).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (cPvA94p_1qI).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (-VVXX8V_0HQ).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (V5fYglZ-frg).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (9D56IFu7SEc).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (thJ-wTDbChs).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (vGv30S2eXv4).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (jLCYdexGURo).
+
+[Wed, 27 Nov 2024 16:15:25 GMT] Added song (HDdVLemmfq4).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (UUD2qCazRY4).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (4gA5iaZ11lU).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (mHD7ejJk0jM).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (TapXs54Ah3E).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (DUT5rEU6pqM).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (FwZTgDjRLM0).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (RKGbjJarMeA).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (NUsoVlDFqZg).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (QCcBiAwp9nc).
+
+[Wed, 27 Nov 2024 16:34:04 GMT] Added song (4iy-7ZN9D6c).
+
+[Wed, 27 Nov 2024 22:07:26 GMT] Created buffer file (./src/archive/1JA4QNmpteU-temp_audio.pcm) for song (1JA4QNmpteU).
+
+[Wed, 27 Nov 2024 22:12:29 GMT] Created buffer file (./src/archive/-VVXX8V_0HQ-temp_audio.pcm) for song (-VVXX8V_0HQ).
+
+[Wed, 27 Nov 2024 22:12:32 GMT] Created buffer file (./src/temp/-VVXX8V_0HQ-temp_audio.pcm) for song (-VVXX8V_0HQ).
+
+[Wed, 27 Nov 2024 22:12:32 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:12:32 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:14:20 GMT] Removed temp audio file (./src/temp/-VVXX8V_0HQ-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 22:14:24 GMT] Created buffer file (./src/temp/1JA4QNmpteU-temp_audio.pcm) for song (1JA4QNmpteU).
+
+[Wed, 27 Nov 2024 22:14:24 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:14:24 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:17:06 GMT] Removed temp audio file (./src/temp/1JA4QNmpteU-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 22:17:10 GMT] Created buffer file (./src/temp/2f_WdJeBEDg-temp_audio.pcm) for song (2f_WdJeBEDg).
+
+[Wed, 27 Nov 2024 22:17:10 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:17:10 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:17:14 GMT] Created buffer file (./src/archive/4gA5iaZ11lU-temp_audio.pcm) for song (4gA5iaZ11lU).
+
+[Wed, 27 Nov 2024 22:18:50 GMT] Cleared temp folder (./src/temp).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (UiNpyDPhb7U).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (x3pNGNJzlT0).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (-BqMtpoRdb0).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (1H6OjV9ps0c).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (-h0qDBw69qw).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (x-xk3V8W-sU).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (EONMguszVek).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (_Yy_cUFYFlk).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (QC_NH5p_lC8).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (lyhoyvASJXA).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (tDcZvV9zK0E).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (J7WUlP6X2YQ).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (OVuJYewsQJ8).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (VPsVrWGOwnA).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (ZhWyTvrBVLs).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (HfWaxr7pTsk).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (bCk72-ccQvU).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (f11yDAuu43k).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (SklXeH4qkVU).
+
+[Wed, 27 Nov 2024 22:30:49 GMT] Added song (EIT8x1IXbuo).
+
+[Wed, 27 Nov 2024 22:44:34 GMT] Cleared the queue for bot (1310116919403216997).
+
+[Wed, 27 Nov 2024 22:46:57 GMT] Created buffer file (./src/archive/-BqMtpoRdb0-temp_audio.pcm) for song (-BqMtpoRdb0).
+
+[Wed, 27 Nov 2024 22:46:57 GMT] Created buffer file (./src/archive/-h0qDBw69qw-temp_audio.pcm) for song (-h0qDBw69qw).
+
+[Wed, 27 Nov 2024 22:47:01 GMT] Created buffer file (./src/temp/-BqMtpoRdb0-temp_audio.pcm) for song (-BqMtpoRdb0).
+
+[Wed, 27 Nov 2024 22:47:01 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:47:01 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:49:38 GMT] Removed temp audio file (./src/temp/-BqMtpoRdb0-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 22:49:41 GMT] Created buffer file (./src/temp/-h0qDBw69qw-temp_audio.pcm) for song (-h0qDBw69qw).
+
+[Wed, 27 Nov 2024 22:49:41 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:49:41 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:49:44 GMT] Created buffer file (./src/archive/EIT8x1IXbuo-temp_audio.pcm) for song (EIT8x1IXbuo).
+
+[Wed, 27 Nov 2024 22:52:07 GMT] Removed temp audio file (./src/temp/-h0qDBw69qw-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 22:52:10 GMT] Created buffer file (./src/temp/EIT8x1IXbuo-temp_audio.pcm) for song (EIT8x1IXbuo).
+
+[Wed, 27 Nov 2024 22:52:10 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:52:10 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:52:13 GMT] Created buffer file (./src/archive/HfWaxr7pTsk-temp_audio.pcm) for song (HfWaxr7pTsk).
+
+[Wed, 27 Nov 2024 22:53:13 GMT] Removed temp audio file (./src/temp/EIT8x1IXbuo-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 22:53:16 GMT] Created buffer file (./src/temp/HfWaxr7pTsk-temp_audio.pcm) for song (HfWaxr7pTsk).
+
+[Wed, 27 Nov 2024 22:53:16 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:53:16 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:53:20 GMT] Created buffer file (./src/archive/Lr0lktJJvh8-temp_audio.pcm) for song (Lr0lktJJvh8).
+
+[Wed, 27 Nov 2024 22:55:10 GMT] Removed temp audio file (./src/temp/HfWaxr7pTsk-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 22:55:13 GMT] Created buffer file (./src/temp/Lr0lktJJvh8-temp_audio.pcm) for song (Lr0lktJJvh8).
+
+[Wed, 27 Nov 2024 22:55:13 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:55:13 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:55:17 GMT] Created buffer file (./src/archive/QC_NH5p_lC8-temp_audio.pcm) for song (QC_NH5p_lC8).
+
+[Wed, 27 Nov 2024 22:58:16 GMT] Removed temp audio file (./src/temp/Lr0lktJJvh8-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 22:58:20 GMT] Created buffer file (./src/temp/QC_NH5p_lC8-temp_audio.pcm) for song (QC_NH5p_lC8).
+
+[Wed, 27 Nov 2024 22:58:20 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 22:58:20 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 22:58:23 GMT] Created buffer file (./src/archive/UiNpyDPhb7U-temp_audio.pcm) for song (UiNpyDPhb7U).
+
+[Wed, 27 Nov 2024 23:00:33 GMT] Removed temp audio file (./src/temp/QC_NH5p_lC8-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 23:00:36 GMT] Created buffer file (./src/temp/UiNpyDPhb7U-temp_audio.pcm) for song (UiNpyDPhb7U).
+
+[Wed, 27 Nov 2024 23:00:36 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:00:36 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:00:40 GMT] Created buffer file (./src/archive/ZhWyTvrBVLs-temp_audio.pcm) for song (ZhWyTvrBVLs).
+
+[Wed, 27 Nov 2024 23:02:51 GMT] Removed temp audio file (./src/temp/UiNpyDPhb7U-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 23:02:55 GMT] Created buffer file (./src/temp/ZhWyTvrBVLs-temp_audio.pcm) for song (ZhWyTvrBVLs).
+
+[Wed, 27 Nov 2024 23:02:55 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:02:55 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:02:58 GMT] Created buffer file (./src/archive/bCk72-ccQvU-temp_audio.pcm) for song (bCk72-ccQvU).
+
+[Wed, 27 Nov 2024 23:04:27 GMT] Removed temp audio file (./src/temp/ZhWyTvrBVLs-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 23:04:30 GMT] Created buffer file (./src/temp/bCk72-ccQvU-temp_audio.pcm) for song (bCk72-ccQvU).
+
+[Wed, 27 Nov 2024 23:04:30 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:04:30 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:04:34 GMT] Created buffer file (./src/archive/lyhoyvASJXA-temp_audio.pcm) for song (lyhoyvASJXA).
+
+[Wed, 27 Nov 2024 23:07:06 GMT] Removed temp audio file (./src/temp/bCk72-ccQvU-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 23:07:10 GMT] Created buffer file (./src/temp/lyhoyvASJXA-temp_audio.pcm) for song (lyhoyvASJXA).
+
+[Wed, 27 Nov 2024 23:07:10 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:07:10 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:07:13 GMT] Created buffer file (./src/archive/x-xk3V8W-sU-temp_audio.pcm) for song (x-xk3V8W-sU).
+
+[Wed, 27 Nov 2024 23:09:13 GMT] Removed temp audio file (./src/temp/lyhoyvASJXA-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 23:09:16 GMT] Created buffer file (./src/temp/x-xk3V8W-sU-temp_audio.pcm) for song (x-xk3V8W-sU).
+
+[Wed, 27 Nov 2024 23:09:16 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:09:16 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:10:00 GMT] Cleared temp folder (./src/temp).
+
+[Wed, 27 Nov 2024 23:26:12 GMT] Created buffer file (./src/temp/x3pNGNJzlT0-temp_audio.pcm) for song (x3pNGNJzlT0).
+
+[Wed, 27 Nov 2024 23:26:12 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:26:12 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:43:09 GMT] Cleared temp folder (./src/temp).
+
+[Wed, 27 Nov 2024 23:43:21 GMT] Cleared the queue for bot (1310116919403216997).
+
+[Wed, 27 Nov 2024 23:51:57 GMT] Created buffer file (./src/temp/EIT8x1IXbuo-temp_audio.pcm) for song (EIT8x1IXbuo).
+
+[Wed, 27 Nov 2024 23:51:57 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:51:57 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:53:03 GMT] Created buffer file (./src/temp/EIT8x1IXbuo-temp_audio.pcm) for song (EIT8x1IXbuo).
+
+[Wed, 27 Nov 2024 23:53:03 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:53:03 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:54:04 GMT] Created buffer file (./src/archive/EONMguszVek-temp_audio.pcm) for song (EONMguszVek).
+
+[Wed, 27 Nov 2024 23:54:09 GMT] Created buffer file (./src/temp/EONMguszVek-temp_audio.pcm) for song (EONMguszVek).
+
+[Wed, 27 Nov 2024 23:54:09 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:54:09 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:54:50 GMT] Created buffer file (./src/temp/EIT8x1IXbuo-temp_audio.pcm) for song (EIT8x1IXbuo).
+
+[Wed, 27 Nov 2024 23:54:50 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:54:50 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:55:26 GMT] Created buffer file (./src/temp/EONMguszVek-temp_audio.pcm) for song (EONMguszVek).
+
+[Wed, 27 Nov 2024 23:55:26 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:55:26 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:57:05 GMT] Created buffer file (./src/temp/EIT8x1IXbuo-temp_audio.pcm) for song (EIT8x1IXbuo).
+
+[Wed, 27 Nov 2024 23:57:05 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:57:05 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:57:22 GMT] Removed temp audio file (./src/temp/EIT8x1IXbuo-temp_audio.pcm)
+
+[Wed, 27 Nov 2024 23:57:25 GMT] Created buffer file (./src/temp/EONMguszVek-temp_audio.pcm) for song (EONMguszVek).
+
+[Wed, 27 Nov 2024 23:57:25 GMT] Audio is now buffering!
+
+[Wed, 27 Nov 2024 23:57:25 GMT] Audio is now playing!
+
+[Wed, 27 Nov 2024 23:57:34 GMT] Audio has finished playing.
+
+[Thu, 28 Nov 2024 00:11:03 GMT] Cleared temp folder (./src/temp).
+
+[Thu, 28 Nov 2024 00:16:05 GMT] Cleared the queue for bot (1310116919403216997).
+
+[Thu, 28 Nov 2024 00:16:17 GMT] Created buffer file (./src/temp/EONMguszVek-temp_audio.pcm) for song (EONMguszVek).
+
+[Thu, 28 Nov 2024 00:16:17 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 00:16:17 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 00:16:50 GMT] Added song (_m6pKuONHrw).
+
+[Thu, 28 Nov 2024 00:16:51 GMT] Added song (n7eqL2vMBBw).
+
+[Thu, 28 Nov 2024 00:16:51 GMT] Added song (m_FjDkd2sQ4).
+
+[Thu, 28 Nov 2024 00:16:52 GMT] Added song (j16mefoqxhU).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (t4xfQDvrfqQ).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (0JFlh06NGaE).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (wm4NCHcw0Yk).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (wpkRjCBLa6U).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (9AGAeGsBCvc).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (aDT8_FFyqnE).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (rcrmTLJ_XWc).
+
+[Thu, 28 Nov 2024 00:16:53 GMT] Added song (9oMQrrPr5OY).
+
+[Thu, 28 Nov 2024 00:16:54 GMT] Added song (J14-hiZf1Ic).
+
+[Thu, 28 Nov 2024 00:16:54 GMT] Added song (5YPz4UzJUp8).
+
+[Thu, 28 Nov 2024 00:16:55 GMT] Created buffer file (./src/archive/_m6pKuONHrw-temp_audio.pcm) for song (_m6pKuONHrw).
+
+[Thu, 28 Nov 2024 00:18:23 GMT] Cleared temp folder (./src/temp).
+
+[Thu, 28 Nov 2024 00:18:55 GMT] Created buffer file (./src/temp/QC_NH5p_lC8-temp_audio.pcm) for song (QC_NH5p_lC8).
+
+[Thu, 28 Nov 2024 00:18:55 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 00:18:55 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 00:19:02 GMT] Added song (sccTIklvW_o).
+
+[Thu, 28 Nov 2024 00:19:04 GMT] Added song (bA2FvdKKuYA).
+
+[Thu, 28 Nov 2024 00:19:04 GMT] Added song (W_ZQggWfKc8).
+
+[Thu, 28 Nov 2024 00:19:05 GMT] Added song (ziFECvMTrRo).
+
+[Thu, 28 Nov 2024 00:19:05 GMT] Added song (1z2MKRJtQuE).
+
+[Thu, 28 Nov 2024 00:19:05 GMT] Added song (PsQr3EsWVC0).
+
+[Thu, 28 Nov 2024 00:19:05 GMT] Added song (cD801P7ZrZY).
+
+[Thu, 28 Nov 2024 00:19:06 GMT] Added song (GCz9dZE6uoU).
+
+[Thu, 28 Nov 2024 00:19:11 GMT] Cleared temp folder (./src/temp).
+
+[Thu, 28 Nov 2024 01:31:01 GMT] Created buffer file (./src/temp/sccTIklvW_o-temp_audio.pcm) for song (sccTIklvW_o).
+
+[Thu, 28 Nov 2024 01:31:01 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 01:31:01 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 01:31:29 GMT] Added song (W99D2nc4WBg).
+
+[Thu, 28 Nov 2024 01:31:31 GMT] Added song (jltjjqz0-Rg).
+
+[Thu, 28 Nov 2024 01:31:31 GMT] Added song (tsZFYo92d0M).
+
+[Thu, 28 Nov 2024 01:31:31 GMT] Added song (W7Ymf9DiBJA).
+
+[Thu, 28 Nov 2024 01:31:31 GMT] Added song (973I1uqT7Rk).
+
+[Thu, 28 Nov 2024 01:31:31 GMT] Added song (2C0mGEfQnt4).
+
+[Thu, 28 Nov 2024 01:31:31 GMT] Added song (nuMKdd_JkHo).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (Yo3QyiD28Dc).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (AOME31tgxnk).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (4I6ryGEFcpw).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (Gn-v_O0mJmI).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (tfNwbuUGOJs).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (9W8B6uD7RnI).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (8A6NQLT6Cbg).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (pM-KzO9P0To).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (p9XsJ_-XKCA).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (e2OuC5dP6PM).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (ZUvnc_0Ibcc).
+
+[Thu, 28 Nov 2024 01:31:32 GMT] Added song (EnWRXV3NqQA).
+
+[Thu, 28 Nov 2024 01:31:34 GMT] Created buffer file (./src/archive/jltjjqz0-Rg-temp_audio.pcm) for song (jltjjqz0-Rg).
+
+[Thu, 28 Nov 2024 01:32:57 GMT] Cleared temp folder (./src/temp).
+
+[Thu, 28 Nov 2024 01:33:47 GMT] Created buffer file (./src/temp/W99D2nc4WBg-temp_audio.pcm) for song (W99D2nc4WBg).
+
+[Thu, 28 Nov 2024 01:33:48 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 01:33:48 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 01:36:06 GMT] Cleared temp folder (./src/temp).
+
+[Thu, 28 Nov 2024 01:37:03 GMT] Created buffer file (./src/temp/fYRIBocQoq8-temp_audio.pcm) for song (fYRIBocQoq8).
+
+[Thu, 28 Nov 2024 01:37:04 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 01:37:04 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 01:37:16 GMT] Created buffer file (./src/temp/wpkRjCBLa6U-temp_audio.pcm) for song (wpkRjCBLa6U).
+
+[Thu, 28 Nov 2024 01:37:16 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 01:37:16 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 01:37:34 GMT] Added song (7DjmTTshzMc).
+
+[Thu, 28 Nov 2024 01:37:37 GMT] Created buffer file (./src/temp/7DjmTTshzMc-temp_audio.pcm) for song (7DjmTTshzMc).
+
+[Thu, 28 Nov 2024 01:37:37 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 01:37:37 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 01:39:47 GMT] Cleared temp folder (./src/temp).
+
+[Thu, 28 Nov 2024 01:39:55 GMT] Created buffer file (./src/temp/7DjmTTshzMc-temp_audio.pcm) for song (7DjmTTshzMc).
+
+[Thu, 28 Nov 2024 01:39:55 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 01:39:55 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 01:40:13 GMT] Created buffer file (./src/temp/wpkRjCBLa6U-temp_audio.pcm) for song (wpkRjCBLa6U).
+
+[Thu, 28 Nov 2024 01:40:13 GMT] Audio is now buffering!
+
+[Thu, 28 Nov 2024 01:40:13 GMT] Audio is now playing!
+
+[Thu, 28 Nov 2024 01:42:54 GMT] Audio has finished playing.
