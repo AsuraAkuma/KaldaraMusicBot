@@ -19,7 +19,13 @@ import fs, { existsSync, rmSync } from 'fs';
 import logError from "./logError";
 import settingsSchema from "./schemas/settings-schema";
 import path from "path";
-play.setToken({ spotify: { client_id, client_secret, refresh_token, market: 'US' } })
+import { cookies } from './data/cookies.json';
+play.setToken({
+    spotify: { client_id, client_secret, refresh_token, market: 'US' },
+    youtube: {
+        cookie: cookies.map((v, i) => `${v.name}=${v.value}`).join(";")
+    }
+})
 const embedFooter = {
     text: botName,
     iconURL: botImage

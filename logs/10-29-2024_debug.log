@@ -1,0 +1,10 @@
+Start of debug log: Fri, 29 Nov 2024 17:50:21 GMT
+Format: [Timestamp] Message
+
+[Fri, 29 Nov 2024 17:50:21 GMT] Cleared temp folder (./src/temp).
+
+[Fri, 29 Nov 2024 17:50:40 GMT] Created buffer file (./src/temp/-BqMtpoRdb0-temp_audio.pcm) for song (-BqMtpoRdb0).
+
+[Fri, 29 Nov 2024 17:50:40 GMT] Audio is now buffering!
+
+[Fri, 29 Nov 2024 17:50:40 GMT] Audio is now playing!
