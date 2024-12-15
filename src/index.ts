@@ -15,7 +15,8 @@ const express = require('express');
 const app = express();
 const { port } = require('./config.json');
 app.use(express.json());
-app.listen(port, () => console.log(`Listening on port ${port}!`))
+app.use("/", require('./routes'));
+app.listen(port,"127.0.0.1", () => console.log(`Listening on port ${port}!`))
 console.log('Kaldara Music Server is online!');
 
 // Compile slash commands

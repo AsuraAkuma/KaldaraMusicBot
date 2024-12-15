@@ -2,3 +2,11 @@ Start of debug log: Sun, 15 Dec 2024 10:52:12 GMT
 Format: [Timestamp] Message
 
 [Sun, 15 Dec 2024 10:52:12 GMT] Cleared temp folder (./src/temp).
+
+[Sun, 15 Dec 2024 10:56:18 GMT] Created temp folder (./src/temp).
+
+[Sun, 15 Dec 2024 10:56:18 GMT] Created new queue for bot (1310116919403216997).
+
+[Sun, 15 Dec 2024 11:41:05 GMT] Added song (2f_WdJeBEDg).
+
+[Sun, 15 Dec 2024 11:41:20 GMT] Created buffer file (./src/temp/2f_WdJeBEDg-temp_audio.pcm) for song (2f_WdJeBEDg).
