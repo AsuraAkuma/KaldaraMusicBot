@@ -21,10 +21,7 @@ import settingsSchema from "./schemas/settings-schema";
 import path from "path";
 import { cookies } from './data/cookies.json';
 play.setToken({
-    spotify: { client_id, client_secret, refresh_token, market: 'US' },
-    youtube: {
-        cookie: cookies.map((v, i) => `${v.name}=${v.value}`).join(";")
-    }
+    spotify: { client_id, client_secret, refresh_token, market: 'US' }
 })
 const embedFooter = {
     text: botName,
