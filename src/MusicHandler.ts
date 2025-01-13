@@ -9,7 +9,7 @@ import queueSchema from "./schemas/queue-schema";
 import logDebug from "./logDebug";
 import client from "./index";
 import ffmpeg from 'fluent-ffmpeg';
-const youtubedl = require('youtube-dl-exec');
+import youtubedl from 'youtube-dl-exec';
 import play from 'play-dl';
 import prism from 'prism-media';
 import { client_id, client_secret, refresh_token } from './data/spotify.json';
@@ -26,6 +26,10 @@ play.setToken({
         cookie: cookies.map((v, i) => `${v.name}=${v.value}`).join(";")
     }
 })
+// console.log("\n\n\n",cookies.map((v, i) => `${v.name}=${v.value}`).join(";"),"\n\n\n")
+// setTimeout(() => {
+//     play.authorization();
+// }, 5000);
 const embedFooter = {
     text: botName,
     iconURL: botImage
@@ -540,16 +544,20 @@ export class Song {
         const tmpFile = `./src/temp/${this.id}-temp_audio.pcm`;
         const archFile = path.resolve(__dirname, `./src/archive/${this.id}-temp_audio.pcm`);
         if (!existsSync(archFile)) {
-            const output = await youtubedl(this.url, {
-                format: 'bestaudio', // Get the best audio or change to "best" for video+audio
-                dumpSingleJson: true, // Return metadata in JSON format
-            });
+            // const output:any = await youtubedl(this.url, {
+            //     format: 'bestaudio', // Get the best audio or change to "best" for video+audio
+            //     dumpSingleJson: true, // Return metadata in JSON format,
+            //     addHeader: ['referer:youtube.com', 'user-agent:googlebot'],
+            //       noCheckCertificates: true,
+            //         noWarnings: true
+            //                 });
+                    const stream = await play.stream(this.url); 
             const volumeFactor = parseFloat((this.handler.volume / 1000).toPrecision(2));
             if (existsSync(tmpFile)) {
                 await rmSync(tmpFile);
             }
             const ffmpegPromise = new Promise((resolve, reject) => {
-                ffmpeg(output.url)
+                ffmpeg(stream.stream)
                     .seekInput((seekInSeconds) ? seekInSeconds : 0)
                     .audioCodec('pcm_s16le')
                     .audioFilters(`volume=${volumeFactor}`) // Apply volume adjustment
@@ -685,14 +693,20 @@ export class Song {
         }
         const archFile = `./src/archive/${this.id}-temp_audio.pcm`;
         if (!existsSync(archFile)) {
-            const output = await youtubedl(this.url, {
-                format: 'bestaudio', // Get the best audio or change to "best" for video+audio
-                dumpSingleJson: true, // Return metadata in JSON format
-            });
+            // const output:any = await youtubedl(this.url, {
+            //     format: 'bestaudio', // Get the best audio or change to "best" for video+audio
+            //     dumpSingleJson: true, // Return metadata in JSON format,
+            //       addHeader: ['referer:youtube.com', 'user-agent:googlebot'],
+            //       noCheckCertificates: true,
+            //         noWarnings: true,
+            //           preferFreeFormats: true
+            // });
+            const stream = await play.stream(this.url); 
             const volumeFactor = parseFloat((this.handler.volume / 1000).toPrecision(2));
             const ffmpegPromise = new Promise((resolve, reject) => {
-                ffmpeg(output.url)
+                ffmpeg(stream.stream)
                     .audioCodec('pcm_s16le')
+                    .inputFormat(stream.type)
                     .audioFilters(`volume=${volumeFactor}`) // Apply volume adjustment
                     .format('s16le')
                     .output(archFile)

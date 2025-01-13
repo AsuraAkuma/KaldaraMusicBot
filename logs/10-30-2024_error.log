@@ -1,0 +1,7 @@
+Start of error log: Sat, 30 Nov 2024 15:05:06 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Sat, 30 Nov 2024 15:05:06 GMT] [src\slash_commands\music\play.ts] Error: While getting info from url
+Sign in to confirm you’re not a bot
+
+[Sat, 30 Nov 2024 15:06:13 GMT] [src\slash_commands\music\play.ts] Error: Input format opus is not available
