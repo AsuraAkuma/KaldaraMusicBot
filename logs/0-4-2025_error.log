@@ -1,0 +1,8 @@
+Start of error log: Sat, 04 Jan 2025 11:01:35 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Sat, 04 Jan 2025 11:01:35 GMT] [misc\help.ts] TypeError: Cannot read properties of undefined (reading '0')
+
+[Sat, 04 Jan 2025 11:05:39 GMT] [misc\help.ts] TypeError: Cannot read properties of undefined (reading 'push')
+
+[Sat, 04 Jan 2025 11:15:14 GMT] [misc\help.ts] Error: Expected the value to be an object, but received string instead

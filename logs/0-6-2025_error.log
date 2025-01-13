@@ -1,0 +1,10 @@
+Start of error log: Mon, 06 Jan 2025 08:56:56 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Mon, 06 Jan 2025 08:56:56 GMT] [] Error: Premature close
+
+[Mon, 06 Jan 2025 08:56:56 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed
+
+[Mon, 06 Jan 2025 10:52:37 GMT] [misc\help.ts] TypeError: option.filter is not a function
+
+[Mon, 06 Jan 2025 12:20:26 GMT] [select.ts] TypeError: Cannot read properties of undefined (reading 'songId')

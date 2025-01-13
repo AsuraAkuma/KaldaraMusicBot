@@ -58,6 +58,9 @@ module.exports = {
                 interaction.editReply({
                     embeds: [replyEmbed]
                 });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             } else if (_subcommand === "playlist") {
                 const playlistURL = _hoistedOptions[0].value;
                 const res = await handler.queue.addPlaylist(playlistURL).catch((reason) => { throw reason })
@@ -86,7 +89,9 @@ module.exports = {
                         embeds: [replyEmbed]
                     });
                 }
-
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             } else if (_subcommand === "search") {
                 const search: YouTubeVideo[] = await play.search(`${options._hoistedOptions[0].value}`, {
                     limit: 10
@@ -134,9 +139,13 @@ module.exports = {
                 }
                 const songs = await songSchema.find({ _id: { $in: targetPlaylist.songs.sort((a, b) => a.index - b.index).map((v, i) => v.songId) } });
                 songs.forEach(async (song) => {
-                    await handler.queue.addDbSong(song as dbSong);
+                    if (!handler.queue.songs.find(s => s.id === song._id)) {
+                        await handler.queue.addDbSong(song as dbSong);
+                    }
                 })
-                await handler.play(member.voice.channel);
+                if (handler.isPlaying === false) {
+                    await handler.play(member.voice.channel);
+                }
                 const embed = new EmbedBuilder()
                     .setTitle(`**Play Custom Playlist**`)
                     .setDescription(`Your playlist has been added to the queue.`)
@@ -145,6 +154,9 @@ module.exports = {
                 interaction.editReply({
                     embeds: [embed]
                 });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             } else if (_subcommand === "skip") {
                 const settings = await settingsSchema.findOne({ _id: guild.id });
                 if (!settings) {
@@ -162,6 +174,9 @@ module.exports = {
                 interaction.editReply({
                     embeds: [embed]
                 });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             } else if (_subcommand === "stop") {
                 await handler.stop();
                 const embed = new EmbedBuilder()
@@ -172,6 +187,9 @@ module.exports = {
                 interaction.editReply({
                     embeds: [embed]
                 });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             } else if (_subcommand === "pause") {
                 await handler.pause();
                 const embed = new EmbedBuilder()
@@ -201,12 +219,15 @@ module.exports = {
                 interaction.editReply({
                     embeds: [embed]
                 });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             } else if (_subcommand === "seek") {
                 const seconds = (_hoistedOptions[0].value * 60 * 60) + (_hoistedOptions[1].value * 60) + _hoistedOptions[2].value;
                 if (seconds === 0) {
                     throw "You can not seek for 0 seconds.";
                 }
-                // await handler.seek(seconds);
+                await handler.seek(seconds);
                 const hoursFormatted = `${(_hoistedOptions[0].value > 0) ? `${(_hoistedOptions[0].value <= 9) ? "0" : ""}${_hoistedOptions[0].value}:` : ""}`;
                 const minutesFormatted = `${(_hoistedOptions[1].value <= 9) ? "0" : ""}${_hoistedOptions[1].value}`;
                 const secondsFormatted = `${(_hoistedOptions[2].value <= 9) ? "0" : ""}${_hoistedOptions[2].value}`;
@@ -219,6 +240,9 @@ module.exports = {
                 interaction.editReply({
                     embeds: [embed]
                 });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             }
         } catch (content: any) {
             if (typeof content === "object") {
@@ -255,7 +279,7 @@ module.exports = {
                 .setDescription('Play a song from the url.')
                 .addStringOption((option: SlashCommandStringOption) =>
                     option
-                        .setName('song')
+                        .setName('song_url')
                         .setDescription('The url of the song.')
                         .setRequired(true)
                 )
@@ -266,7 +290,7 @@ module.exports = {
                 .setDescription('Play a playlist from the url.')
                 .addStringOption(option =>
                     option
-                        .setName('playlist')
+                        .setName('playlist_url')
                         .setDescription('The url of the playlist.')
                         .setRequired(true)
                 )
@@ -277,7 +301,7 @@ module.exports = {
                 .setDescription('Search songs and pick one to play.')
                 .addStringOption(option =>
                     option
-                        .setName('search_terms')
+                        .setName('song_name')
                         .setDescription('Key words used to find the song.')
                         .setRequired(true)
                 )

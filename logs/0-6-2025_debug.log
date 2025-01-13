@@ -1,0 +1,32 @@
+Start of debug log: Mon, 06 Jan 2025 08:49:58 GMT
+Format: [Timestamp] Message
+
+[Mon, 06 Jan 2025 08:49:58 GMT] Creating buffer file for song (vFHBOKa_ZG0).
+
+[Mon, 06 Jan 2025 08:50:01 GMT] Created audio stream for song (vFHBOKa_ZG0).
+
+[Mon, 06 Jan 2025 08:50:02 GMT] Audio is now buffering!
+
+[Mon, 06 Jan 2025 08:50:02 GMT] Audio is now playing!
+
+[Mon, 06 Jan 2025 08:50:02 GMT] Created buffer file (./src/temp/vFHBOKa_ZG0-temp_audio.pcm) for song (vFHBOKa_ZG0).
+
+[Mon, 06 Jan 2025 08:50:02 GMT] Copied buffer file (./src/temp/vFHBOKa_ZG0-temp_audio.pcm) to archive folder.
+
+[Mon, 06 Jan 2025 08:50:18 GMT] Created audio stream for song (vFHBOKa_ZG0).
+
+[Mon, 06 Jan 2025 08:50:18 GMT] Audio is now buffering!
+
+[Mon, 06 Jan 2025 08:50:18 GMT] Audio is now playing!
+
+[Mon, 06 Jan 2025 08:53:18 GMT] Created audio stream for song (vFHBOKa_ZG0).
+
+[Mon, 06 Jan 2025 08:53:18 GMT] Audio is now buffering!
+
+[Mon, 06 Jan 2025 08:53:18 GMT] Audio is now playing!
+
+[Mon, 06 Jan 2025 08:56:56 GMT] Audio has finished playing.
+
+[Mon, 06 Jan 2025 08:56:56 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 06 Jan 2025 08:56:56 GMT] Cleared the queue for bot (1310116919403216997).

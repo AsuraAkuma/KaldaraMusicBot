@@ -9,7 +9,7 @@ const startCommand = 'npx ts-node src/index.ts'; // Command to start the server
  * @param {function} callback - The function to call with the result.
  */
 async function checkServer(callback: any) {
-    const testReq = await fetch(`http://localhost:${port}`, { method: 'GET', headers: { "Content-Type": 'application/json' } }).catch((err) => { });
+    const testReq = await fetch(`http://127.0.0.1:${port}`, { method: 'GET', headers: { "Content-Type": 'application/json' } }).catch((err) => { console.log(err)});
     if (!testReq) {
         callback(false);
     } else {
@@ -31,7 +31,7 @@ function startServer() {
 setInterval(() => {
     console.log('Attempting to restart server.');
     setTimeout(async () => {
-        await fetch(`http://localhost:${port}/stop`, { method: 'GET', headers: { "Content-Type": 'application/json' } }).catch((err) => { });
+        await fetch(`http://127.0.0.1:${port}/stop`, { method: 'GET', headers: { "Content-Type": 'application/json' } }).catch((err) => { });
     }, 5000);
 }, 60 * 1000 * 60 * 12);
 
@@ -41,11 +41,13 @@ setInterval(() => {
 function monitorServer() {
     checkServer((isRunning: any) => {
         if (!isRunning) {
-            console.log('Kaldara Music bit is down. Restarting...');
+            console.log('Kaldara Music bot is down. Restarting...');
             startServer();
         }
     });
 }
 monitorServer();
 // Check every 10 seconds
-setInterval(monitorServer, 10000);
+setTimeout(() => {
+    setInterval(monitorServer, 10000);
+}, 60000);

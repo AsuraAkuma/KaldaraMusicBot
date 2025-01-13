@@ -1,6 +1,6 @@
 import { EmbedBuilder } from "@discordjs/builders";
 import { AudioPlayer, AudioResource, VoiceConnection, StreamType } from "@discordjs/voice";
-import { Colors, Guild, TextBasedChannel, TextChannel, VoiceBasedChannel, VoiceChannel } from "discord.js";
+import { Channel, Colors, Guild, TextBasedChannel, TextChannel, VoiceBasedChannel, VoiceChannel } from "discord.js";
 import { botName, botImage, clientId } from "./config.json";
 import { InfoData, SoundCloudPlaylist, SoundCloudTrack, SpotifyAlbum, SpotifyPlaylist, SpotifyTrack, YouTubePlayList, YouTubeVideo } from "play-dl";
 import { AudioPlayerStatus, joinVoiceChannel, createAudioPlayer, createAudioResource, NoSubscriberBehavior } from '@discordjs/voice';
@@ -9,22 +9,24 @@ import queueSchema from "./schemas/queue-schema";
 import logDebug from "./logDebug";
 import client from "./index";
 import ffmpeg from 'fluent-ffmpeg';
+<<<<<<< HEAD
 import youtubedl from 'youtube-dl-exec';
+=======
+import youtubedl, { Payload } from 'youtube-dl-exec';
+>>>>>>> 1584e19b25a509037b7c8fcb087b470c2dd5738f
 import play from 'play-dl';
-import prism from 'prism-media';
+// import prism from 'prism-media';
 import { client_id, client_secret, refresh_token } from './data/spotify.json';
 import { WritableStreamBuffer } from 'stream-buffers';
-import { EventEmitter, Readable } from 'stream';
+import { EventEmitter, PassThrough, Readable, Writable } from 'stream';
 import fs, { existsSync, rmSync } from 'fs';
 import logError from "./logError";
 import settingsSchema from "./schemas/settings-schema";
 import path from "path";
-import { cookies } from './data/cookies.json';
+import playlistSchema from "./schemas/playlist-schema";
+// import { cookies } from './data/cookies.json';
 play.setToken({
-    spotify: { client_id, client_secret, refresh_token, market: 'US' },
-    youtube: {
-        cookie: cookies.map((v, i) => `${v.name}=${v.value}`).join(";")
-    }
+    spotify: { client_id, client_secret, refresh_token, market: 'US' }
 })
 // console.log("\n\n\n",cookies.map((v, i) => `${v.name}=${v.value}`).join(";"),"\n\n\n")
 // setTimeout(() => {
@@ -40,8 +42,6 @@ export class MusicHandler {
     queue: Queue;
     isPlaying: Boolean;
     connection: VoiceConnection | null;
-    loopSong: Boolean;
-    loopQueue: Boolean;
     smartPlay: Boolean;
     volume: number;
     alwaysConnected: Boolean;
@@ -52,6 +52,9 @@ export class MusicHandler {
     isRepeatSingle: Boolean;
     isRepeatAll: Boolean;
     isAutoplay: Boolean;
+    downloading: any;
+    songDownloading: any;
+    seekTarget: number | null;
     constructor(guild: Guild) {
         this.player = createAudioPlayer({
             behaviors: {
@@ -62,8 +65,6 @@ export class MusicHandler {
         this.isPlaying = false;
         this.connection = null;
         // Settings
-        this.loopSong = false;
-        this.loopQueue = false;
         this.smartPlay = false;
         this.volume = 70;
         settingsSchema.findOne({ _id: guild.id }).then((result) => {
@@ -78,7 +79,8 @@ export class MusicHandler {
         this.nowPlaying = null;
         this.isRepeatSingle = false;
         this.isRepeatAll = false;
-        this.isAutoplay = true;
+        this.isAutoplay = false;
+        this.seekTarget = null;
         this.startListeners();
     }
 
@@ -113,12 +115,23 @@ export class MusicHandler {
             this.play(targetChannel);
             return;
         }
-        await this.queue.songs[0].createBufferedResource();
-        const resource = await this.queue.songs[0].getBufferedResource();
-        this.player.play(resource);
-        this.connection.subscribe(this.player);
-        this.isPlaying = true;
-        this.nowPlaying = this.queue.songs[0];
+        if (this.queue.songs[0].url === "Unknown") {
+            if (await cr(0, this.queue) === true) {
+                const resource: any = await this.queue.songs[0].getBufferedResource();
+                this.player.play(resource);
+                this.connection.subscribe(this.player);
+                this.isPlaying = true;
+                this.nowPlaying = this.queue.songs[0];
+            } else {
+                throw 'Was not able to prepare any songs';
+            }
+        } else {
+            const resource: any = await this.queue.songs[0].getBufferedResource();
+            this.player.play(resource);
+            this.connection.subscribe(this.player);
+            this.isPlaying = true;
+            this.nowPlaying = this.queue.songs[0];
+        }
     }
     async pause() {
         if (this.isPlaying === false) {
@@ -138,7 +151,7 @@ export class MusicHandler {
             if (!this.connection) {
                 throw "There is no connection.";
             }
-            const resource = await this.queue.songs[0].getBufferedResource();
+            const resource: any = await this.queue.songs[0].getBufferedResource();
             this.player.play(resource);
             this.connection.subscribe(this.player);
             this.isPlaying = true;
@@ -149,8 +162,23 @@ export class MusicHandler {
         if (this.isPlaying === false) {
             throw `There is nothing currently playing.`;
         }
-        await this.queue.clear();
-        this.player.stop(true);
+        if (this.songDownloading === this.nowPlaying?.id) {
+            await this.downloading.kill("SIGINT");
+            this.downloading = null;
+            this.songDownloading = null;
+        }
+        setTimeout(async () => {
+            this.nowPlaying?.audioStream?.destroy();
+            await this.queue.clear();
+            this.player.stop(true);
+            this.isAutoplay = false;
+            this.isRepeatAll = false;
+            this.isRepeatSingle = false;
+            this.nowPlaying = null;
+            this.isPlaying = false;
+            this.isPaused = false;
+        }, 2000);
+
     }
     async seek(seconds: number) {
         // Check if song is currently playing
@@ -163,11 +191,12 @@ export class MusicHandler {
         if (this.nowPlaying.duration <= seconds) {
             throw `You can not seek to that time.`;
         }
+        if (!this.nowPlaying.isSeekable) {
+            throw `You can not use seek on this song since it is still buffering.`;
+        }
         this.isSeeking = true;
+        this.seekTarget = seconds;
         this.player.stop(true);
-        const resource: any = await this.nowPlaying.getBufferedResource(seconds);
-        this.player.play(resource);
-        this.isSeeking = false;
     }
 
     async skip() {
@@ -178,7 +207,15 @@ export class MusicHandler {
         if (!this.nowPlaying) {
             throw `There is nothing currently playing.`;
         }
-        this.player.stop(true);
+        if (this.songDownloading === this.nowPlaying?.id) {
+            await this.downloading.kill("SIGINT");
+            this.downloading = null;
+            this.songDownloading = null;
+        }
+        setTimeout(() => {
+            this.nowPlaying?.audioStream?.destroy();
+            this.player.stop(true);
+        }, 2000);
     }
 
     async setVolume(percent: number) {
@@ -215,201 +252,243 @@ export class MusicHandler {
         this.isAutoplay = value;
     }
     // Start listeners
-    startListeners() {
+    async startListeners() {
         const clientMember = this.guild.members.cache.get(clientId);
         if (!clientMember) {
             throw "No client member detected.";
         }
-        // Check for commands channel
-        settingsSchema.findOne({ _id: this.guild.id }).then((result) => {
+        // Buffering
+        this.player.on(AudioPlayerStatus.Buffering, () => {
+            logDebug('Audio is now buffering!');
+        });
+        // Playing
+        this.player.on(AudioPlayerStatus.Playing, async () => {
+            // Check for commands channel
+            const result = await settingsSchema.findOne({ _id: this.guild.id });
+
             // Check for channel
             const targetChannel: TextChannel = this.guild.channels.cache.get(result?.channelId as string) as TextChannel;
-            if (targetChannel) {
-                // Buffering
-                this.player.on(AudioPlayerStatus.Buffering, () => {
-                    logDebug('Audio is now buffering!');
-                });
-                // Playing
-                this.player.on(AudioPlayerStatus.Playing, () => {
-                    if (this.isSeeking === true) {
-                        return;
-                    }
-                    this.isPlaying = true;
-                    logDebug('Audio is now playing!');
-                    if (this.isPaused === true) {
+            if (this.isSeeking === true) {
+                return;
+            }
+            this.isPlaying = true;
+            logDebug('Audio is now playing!');
+            if (this.isPaused === true) {
+                if (targetChannel) {
+                    const replyEmbed = new EmbedBuilder()
+                        .setTitle(`Music Unpaused`)
+                        .setDescription(`The music has been unpaused.`)
+                        .setColor(Colors.Blue)
+                        .setFooter(embedFooter)
+                    targetChannel.send({
+                        embeds: [replyEmbed]
+                    });
+                }
+                this.isPaused = false;
+            }
+            if (result?.channelId !== null) {
+                if (this.nowPlaying) {
+                    if (targetChannel) {
                         const replyEmbed = new EmbedBuilder()
-                            .setTitle(`Music Unpaused`)
-                            .setDescription(`The music has been unpaused.`)
+                            .setTitle(`**Now Playing:** ${this.nowPlaying?.name}`)
+                            .addFields(
+                                {
+                                    name: `**Duration**`,
+                                    value: `[${this.nowPlaying.durationRaw}]`,
+                                    inline: true
+
+                                },
+                                {
+                                    name: '**Channel**',
+                                    value: `${this.nowPlaying.channel}`,
+                                    inline: true
+                                }
+                            )
+                            .setThumbnail((this.nowPlaying) ? this.nowPlaying.thumbnail : "")
                             .setColor(Colors.Blue)
                             .setFooter(embedFooter)
                         targetChannel.send({
                             embeds: [replyEmbed]
                         });
-                    } else {
-                        if (result?.channelId !== null) {
-                            if (this.nowPlaying) {
-                                const replyEmbed = new EmbedBuilder()
-                                    .setTitle(`**Now Playing:** ${this.nowPlaying?.name}`)
-                                    .addFields(
-                                        {
-                                            name: `**Duration**`,
-                                            value: `[${this.nowPlaying.durationRaw}]`,
-                                            inline: true
-
-                                        },
-                                        {
-                                            name: '**Channel**',
-                                            value: `${this.nowPlaying.channel}`,
-                                            inline: true
-                                        }
-                                    )
-                                    .setThumbnail((this.nowPlaying) ? this.nowPlaying.thumbnail : "")
-                                    .setColor(Colors.Blue)
-                                    .setFooter(embedFooter)
-                                targetChannel.send({
-                                    embeds: [replyEmbed]
-                                });
-                            }
-
-                        }
-                        if (this.queue.songs.length > 1) {
-                            this.queue.songs[1].createBufferedResource();
-                        }
                     }
-                });
-                // Paused
-                this.player.on(AudioPlayerStatus.Paused, () => {
-                    logDebug('Audio is now paused!');
-                    if (result?.channelId !== null) {
-                        if (this.nowPlaying) {
-                            const replyEmbed = new EmbedBuilder()
-                                .setTitle(`Music Paused`)
-                                .setDescription(`The music has been paused.`)
-                                .setColor(Colors.Blue)
-                                .setFooter(embedFooter)
-                            targetChannel.send({
-                                embeds: [replyEmbed]
-                            });
-                        }
+                }
 
-                    }
-                });
-                // Idle
-                this.player.on(AudioPlayerStatus.Idle, async () => {
-                    try {
-                        if (this.isSeeking === true) {
-                            return;
-                        }
-                        if (this.isRepeatSingle === true) {
-                            if (!this.nowPlaying) {
-                                this.isRepeatSingle = false;
-                                throw "Nothing currently playing.";
-                            }
-                            const resource = await this.nowPlaying.getBufferedResource();
-                            this.player.play(resource);
-                        } else if (this.isRepeatAll === true) {
-                            if (this.queue.songs.length <= 1) {
-                                if (!this.nowPlaying) {
-                                    this.isRepeatAll = false;
-                                    throw "Nothing currently playing.";
-                                }
-                                const resource = await this.nowPlaying.getBufferedResource();
-                                this.player.play(resource);
-                            } else {
-                                if (!this.nowPlaying) {
-                                    this.isRepeatAll = false;
-                                    throw "Nothing currently playing.";
-                                }
-                                this.queue.songs.push(this.nowPlaying);
-                                this.queue.songs.shift();
-                                this.nowPlaying = this.queue.songs[0];
-                                const resource = await this.queue.songs[0].getBufferedResource();
-                                this.player.play(resource);
-                            }
-                        } else {
-                            if (this.queue.songs.length <= 1) {
-                                if (this.queue.songs[0]) {
-                                    await this.queue.removeSong(this.queue.songs[0].id);
-                                }
-                                if (this.isAutoplay === true && this.nowPlaying) {
-                                    const songData = await play.video_info(this.nowPlaying.url);
-                                    const relatedSong = songData.related_videos[0];
-                                    await this.queue.addSong(relatedSong);
-                                    this.nowPlaying = this.queue.songs[0];
-                                    const resource = await this.queue.songs[0].getBufferedResource();
-                                    this.player.play(resource);
-                                } else {
-                                    if (result?.channelId !== null) {
-                                        logDebug('Audio has finished playing.');
-                                        const replyEmbed = new EmbedBuilder()
-                                            .setTitle('**Finished Playing**')
-                                            .setDescription(`Audio has finished playing, add more songs using \`/play\``)
-                                            .setColor(Colors.Blue)
-                                            .setFooter(embedFooter)
-                                        targetChannel.send({
-                                            embeds: [replyEmbed]
-                                        });
-                                    }
-                                    if (this.connection) {
-                                        this.connection.destroy();
-                                    }
-                                }
-                            } else {
-                                // Remove old buffer file
-                                if (this.nowPlaying) {
-                                    const tmpFile = `./src/temp/${this.nowPlaying.id}-temp_audio.pcm`;
-                                    if (existsSync(tmpFile)) {
-                                        fs.rm(tmpFile, () => logDebug(`Removed temp audio file (${tmpFile})`));
-                                    }
-                                }
-                                await this.queue.removeSong(this.queue.songs[0].id);
-                                // Set now playing to next song
-                                this.nowPlaying = this.queue.songs[0];
-                                const resource = await this.nowPlaying.getBufferedResource();
-                                this.player.play(resource);
-                                this.queue.removeSong(this.nowPlaying.id);
-                            }
-                            this.isPlaying = false;
-                        }
-                    } catch (error: any) {
-                        logError(error, __filename);
-                    }
-                });
-                // Error
-                this.player.on('error', (error) => {
-                    logError(error, __filename);
-                    if (result?.channelId !== null) {
+            }
+            if (this.queue.songs.length > 1) {
+                cr(1, this.queue);
+            }
+
+        });
+        // Paused
+        this.player.on(AudioPlayerStatus.Paused, async () => {
+            // Check for commands channel
+            const result = await settingsSchema.findOne({ _id: this.guild.id });
+
+            // Check for channel
+            const targetChannel: TextChannel = this.guild.channels.cache.get(result?.channelId as string) as TextChannel;
+            logDebug('Audio is now paused!');
+            if (targetChannel) {
+                if (result?.channelId !== null) {
+                    if (this.nowPlaying) {
                         const replyEmbed = new EmbedBuilder()
-                            .setTitle('**Music Status**')
-                            .setDescription(`Audio has stopped playing due to an error.`)
-                            .setColor(Colors.Red)
+                            .setTitle(`Music Paused`)
+                            .setDescription(`The music has been paused.`)
+                            .setColor(Colors.Blue)
                             .setFooter(embedFooter)
                         targetChannel.send({
                             embeds: [replyEmbed]
                         });
                     }
-                    if (this.connection) {
-                        this.connection.destroy();
+
+                }
+            }
+        });
+        // Idle
+        this.player.on(AudioPlayerStatus.Idle, async () => {
+            // Check for commands channel
+            const result = await settingsSchema.findOne({ _id: this.guild.id });
+
+            // Check for channel
+            const targetChannel: TextChannel = this.guild.channels.cache.get(result?.channelId as string) as TextChannel;
+            try {
+                if (this.isSeeking === true) {
+                    if (this.nowPlaying) {
+                        const resource: any = await this.nowPlaying.getBufferedResource(this.seekTarget ?? 0);
+                        this.player.play(resource);
+                        this.isSeeking = false;
                     }
-                });
-                // Voice state update
-                client.on('voiceStateUpdate', (oldState, newState) => {
-                    if (newState) {
-                        if (newState.channel) {
-                            if (newState.member) {
-                                if (newState.member.id === clientId) {
-                                    this.connection = joinVoiceChannel({
-                                        channelId: targetChannel.id, // Ensure you save the old channel ID
-                                        guildId: this.guild.id,
-                                        adapterCreator: this.guild.voiceAdapterCreator
+                    return;
+                }
+                if (this.isRepeatSingle === true) {
+                    if (!this.nowPlaying) {
+                        this.isRepeatSingle = false;
+                        throw "Nothing currently playing.";
+                    }
+                    const resource: any = await this.nowPlaying.getBufferedResource();
+                    this.player.play(resource);
+                } else if (this.isRepeatAll === true) {
+                    if (this.queue.songs.length <= 1) {
+                        if (!this.nowPlaying) {
+                            this.isRepeatAll = false;
+                            throw "Nothing currently playing.";
+                        }
+                        const resource: any = await this.nowPlaying.getBufferedResource();
+                        this.player.play(resource);
+                    } else {
+                        if (!this.nowPlaying) {
+                            this.isRepeatAll = false;
+                            throw "Nothing currently playing.";
+                        }
+                        this.queue.songs.push(this.nowPlaying);
+                        this.queue.songs.shift();
+                        this.nowPlaying = this.queue.songs[0];
+                        const resource: any = await this.queue.songs[0].getBufferedResource();
+                        this.player.play(resource);
+                    }
+                } else {
+                    if (this.queue.songs.length <= 1) {
+                        if (this.queue.songs[0]) {
+                            await this.queue.removeSong(this.queue.songs[0].id);
+                        }
+                        if (this.isAutoplay === true && this.nowPlaying) {
+                            const songData = await play.video_info(this.nowPlaying.url);
+                            const relatedSong = songData.related_videos[0];
+                            await this.queue.addSong(relatedSong);
+                            this.nowPlaying = this.queue.songs[0];
+                            const resource: any = await this.queue.songs[0].getBufferedResource();
+                            this.player.play(resource);
+                        } else {
+                            if (result?.channelId !== null) {
+                                logDebug('Audio has finished playing.');
+                                if (targetChannel) {
+                                    const replyEmbed = new EmbedBuilder()
+                                        .setTitle('**Finished Playing**')
+                                        .setDescription(`Audio has finished playing, add more songs using \`/play\``)
+                                        .setColor(Colors.Blue)
+                                        .setFooter(embedFooter)
+                                    targetChannel.send({
+                                        embeds: [replyEmbed]
                                     });
                                 }
                             }
+                            if (this.connection) {
+                                this.connection.destroy();
+                            }
+                            this.isPlaying = false;
                         }
+                    } else {
+                        // Remove old buffer file
+                        if (this.nowPlaying) {
+                            const tmpFile = `./src/temp/${this.nowPlaying.id}-temp_audio.mp3`;
+                            if (existsSync(tmpFile)) {
+                                fs.rm(tmpFile, () => logDebug(`Removed temp audio file (${tmpFile})`));
+                            }
+                        }
+                        await this.queue.removeSong(this.queue.songs[0].id);
+                        // Set now playing to next song
+                        this.nowPlaying = this.queue.songs[0];
+                        if (this.nowPlaying.type !== "YouTubeVideo") {
+                            if (await cr(0, this.queue) === true) {
+                                const resource: any = await this.nowPlaying.getBufferedResource();
+                                this.player.play(resource);
+                            }
+                        } else {
+                            const resource: any = await this.nowPlaying.getBufferedResource();
+                            this.player.play(resource);
+                        }
+                        // this.queue.removeSong(this.nowPlaying.id);
+
                     }
-                });
+                }
+            } catch (error: any) {
+                logError(error, __filename);
             }
-        })
+        });
+        // Error
+        this.player.on('error', async (error) => {
+            // Check for commands channel
+            const result = await settingsSchema.findOne({ _id: this.guild.id });
+
+            // Check for channel
+            const targetChannel: TextChannel = this.guild.channels.cache.get(result?.channelId as string) as TextChannel;
+            logError(error, __filename);
+            // if (targetChannel) {
+            //     if (result?.channelId !== null) {
+            //         const replyEmbed = new EmbedBuilder()
+            //             .setTitle('**Music Status**')
+            //             .setDescription(`Audio has stopped playing due to an error.`)
+            //             .setColor(Colors.Red)
+            //             .setFooter(embedFooter)
+            //         targetChannel.send({
+            //             embeds: [replyEmbed]
+            //         });
+            //     }
+            // }
+            if (this.connection) {
+                try {
+                    this.connection.destroy();
+                } catch (error: any) {
+                    logError(error, __filename);
+                }
+            }
+            this.isPlaying = false;
+        });
+        // Voice state update
+        // client.on('voiceStateUpdate', (oldState, newState) => {
+        //     if (newState) {
+        //         if (newState.channel) {
+        //             if (newState.member) {
+        //                 if (newState.member.id === clientId) {
+        //                     this.connection = joinVoiceChannel({
+        //                         channelId: newState.channel.id, // Ensure you save the old channel ID
+        //                         guildId: this.guild.id,
+        //                         adapterCreator: this.guild.voiceAdapterCreator
+        //                     });
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
     }
 }
 type dbSong = {
@@ -431,6 +510,8 @@ export class Song {
     thumbnail: string | null;//url
     channel: string | null;
     type: string;
+    audioStream: Writable | PassThrough | null;
+    isSeekable: Boolean;
     constructor(info: YouTubeVideo | dbSong | SpotifyTrack | SoundCloudTrack, musicHandler: MusicHandler) {
         if (info instanceof YouTubeVideo) {
             if (!info) {
@@ -453,7 +534,7 @@ export class Song {
             this.name = info.title;
             this.url = info.url;
             this.duration = info.durationInSec;
-            this.durationRaw = info.durationRaw;
+            this.durationRaw = `${Math.floor(info.durationInSec / 60)}:${(info.durationInSec % 60).toString().padStart(2, '0')}`;
             this.id = info.id;
             this.thumbnail = (info.thumbnails[0]) ? info.thumbnails[0].url : null;
             this.handler = musicHandler;
@@ -472,7 +553,7 @@ export class Song {
             this.name = info.name;
             this.url = "Unknown";
             this.duration = info.durationInSec;
-            this.durationRaw = "Unknown";
+            this.durationRaw = `${Math.floor(info.durationInSec / 60)}:${(info.durationInSec % 60).toString().padStart(2, '0')}`;
             this.id = `SP-${info.id}`;
             this.thumbnail = "Unknown";
             this.handler = musicHandler;
@@ -490,7 +571,7 @@ export class Song {
             this.name = info.name;
             this.url = "Unknown";
             this.duration = info.durationInSec;
-            this.durationRaw = "Unknown";
+            this.durationRaw = `${Math.floor(info.durationInSec / 60)}:${(info.durationInSec % 60).toString().padStart(2, '0')}`;
             this.id = `SC-${info.id}`;
             this.thumbnail = "Unknown";
             this.handler = musicHandler;
@@ -513,6 +594,8 @@ export class Song {
             this.handler = musicHandler;
             this.type = "dbSong";
         }
+        this.audioStream = null;
+        this.isSeekable = true;
     }
 
     // Deprecated
@@ -538,12 +621,13 @@ export class Song {
     //     return createAudioResource(stream);
     // }
 
-    async getBufferedResource(seekInSeconds?: number): Promise<AudioResource> {
+    async getBufferedResource(seekInSeconds?: number) {
         // Stream the audio data into the buffer
-        // Create FFmpeg command
-        const tmpFile = `./src/temp/${this.id}-temp_audio.pcm`;
-        const archFile = path.resolve(__dirname, `./src/archive/${this.id}-temp_audio.pcm`);
+        const archFile = path.resolve(`${__dirname}/archive/${this.id}-temp_audio.mp3`);
+        let ffmpegPromise: Promise<any>;
+        const volumeFactor = parseFloat((this.handler.volume / 1000).toPrecision(2));
         if (!existsSync(archFile)) {
+<<<<<<< HEAD
             // const output:any = await youtubedl(this.url, {
             //     format: 'bestaudio', // Get the best audio or change to "best" for video+audio
             //     dumpSingleJson: true, // Return metadata in JSON format,
@@ -558,127 +642,79 @@ export class Song {
             }
             const ffmpegPromise = new Promise((resolve, reject) => {
                 ffmpeg(stream.stream)
+=======
+            await this.createBufferedResource();
+            ffmpegPromise = new Promise((resolve, reject) => {
+                this.audioStream = ffmpeg(`./src/temp/${this.id}-temp_audio.mp3`)
+                    .inputFormat('mp3')
+>>>>>>> 1584e19b25a509037b7c8fcb087b470c2dd5738f
                     .seekInput((seekInSeconds) ? seekInSeconds : 0)
-                    .audioCodec('pcm_s16le')
                     .audioFilters(`volume=${volumeFactor}`) // Apply volume adjustment
+                    .addOption('-bufsize', '500M')
                     .format('s16le')
-                    .output(tmpFile)
-                    .on('end', resolve)
+                    .on('start', () => { resolve(true) })
                     .on('error', reject)
-                    .run();
+                    .pipe();
             });
-            await ffmpegPromise;
-            logDebug(`Created buffer file (${tmpFile}) for song (${this.id}).`);
         } else {
-            const volumeFactor = parseFloat((this.handler.volume / 1000).toPrecision(2));
-            if (existsSync(tmpFile)) {
-                await rmSync(tmpFile);
-            }
-            const ffmpegPromise = new Promise((resolve, reject) => {
-                ffmpeg(archFile)
+            ffmpegPromise = new Promise((resolve, reject) => {
+                this.audioStream = ffmpeg(`./src/archive/${this.id}-temp_audio.mp3`)
+                    .inputFormat('mp3')
                     .seekInput((seekInSeconds) ? seekInSeconds : 0)
-                    .audioCodec('pcm_s16le')
                     .audioFilters(`volume=${volumeFactor}`) // Apply volume adjustment
+                    .addOption('-bufsize', '500M')
                     .format('s16le')
-                    .output(tmpFile)
-                    .on('end', resolve)
-                    .on('error', reject)
-                    .run();
+                    .on('start', () => { resolve(true) })
+                    .on('error', (err) => { reject(err) })
+                    .pipe();
             });
-            await ffmpegPromise;
-            logDebug(`Created buffer file (${tmpFile}) for song (${this.id}).`);
         }
-        // Read the file into a stream
-        const fileStream = fs.createReadStream(tmpFile);
-        return createAudioResource(fileStream, { inputType: StreamType.Raw });
+
+        if (await ffmpegPromise) {
+            logDebug(`Created audio stream for song (${this.id}).`);
+            return createAudioResource(this.audioStream as any, { inputType: StreamType.Raw });
+        } else {
+            // Read the file into a stream
+            const fileStream = fs.createReadStream(archFile);
+            return createAudioResource(fileStream, { inputType: StreamType.Raw });
+        }
     }
 
-    async createBufferedResource() {
-        if (this.type === "SoundCloudTrack") {
-            const search = await play.search(`${this.name} by ${this.channel}`, {
-                limit: 1
-            });
-            const infoData: InfoData = await play.video_info(search[0].url);
-            if (!infoData.video_details) {
-                throw "No video details found.";
-            }
-            const info = infoData.video_details;
-            if (!info) {
-                logDebug("No video details found.")
-                throw "No video details found.";
-            }
-            if (!info.title) {
-                logDebug("No video details found.")
-                throw "No video title found.";
-            }
-            if (!info.id) {
-                logDebug("No video id found.")
-                throw "No video id found.";
-            }
-            if (!info.channel) {
-                logDebug("No channel found.")
-                throw "No channel found.";
-            }
-            this.channel = (info.channel.name) ? info.channel.name : null;
-            this.name = info.title;
-            this.url = info.url;
-            this.duration = info.durationInSec;
-            this.durationRaw = info.durationRaw;
-            this.id = info.id;
-            this.thumbnail = (info.thumbnails[0]) ? info.thumbnails[0].url : null;
-            this.handler = this.handler;
-            this.type = "YouTubeVideo";
-            const songData = await songSchema.findOne({ _id: info.id });
-            if (!songData) {
-                await songSchema.create({
-                    _id: info.id,
-                    songURL: info.url,
-                    name: info.title,
-                    channel: info.channel,
-                    thumbnailURL: info.thumbnails[0].url,
-                    durationInSec: info.durationInSec,
-                    durationRaw: info.durationRaw
-                })
-                logDebug(`Added song (${info.id}).`);
-            }
-        } else if (this.type === "SpotifyTrack") {
+    async createBufferedResource(): Promise<boolean> {
+        if (this.url === "Unknown") {
             const search = await play.search(`${this.name} ${this.channel}`, {
                 limit: 1
             });
             const infoData: InfoData = await play.video_info(search[0].url);
             if (!infoData.video_details) {
+                return false;
                 throw "No video details found.";
             }
             const info = infoData.video_details;
             if (!info) {
                 logDebug("No video details found.")
+                return false;
                 throw "No video details found.";
             }
             if (!info.title) {
                 logDebug("No video details found.")
+                return false;
                 throw "No video title found.";
             }
             if (!info.id) {
                 logDebug("No video id found.")
+                return false;
                 throw "No video id found.";
             }
             if (!info.channel) {
                 logDebug("No channel found.")
+                return false;
                 throw "No channel found.";
             }
-            this.channel = (info.channel.name) ? info.channel.name : null;
-            this.name = info.title;
-            this.url = info.url;
-            this.duration = info.durationInSec;
-            this.durationRaw = info.durationRaw;
-            this.id = info.id;
-            this.thumbnail = (info.thumbnails[0]) ? info.thumbnails[0].url : null;
-            this.handler = this.handler;
-            this.type = "YouTubeVideo";
-
-            this.url = info.url
-            const songData = await songSchema.findOne({ _id: info.id });
-            if (!songData) {
+            const songData = await songSchema.findOne({ _id: this.id });
+            const songData2 = await songSchema.findOne({ _id: info.id });
+            const playlistData = await playlistSchema.find({ "songs.songId": this.id });
+            if (!songData2) {
                 await songSchema.create({
                     _id: info.id,
                     songURL: info.url,
@@ -690,7 +726,36 @@ export class Song {
                 })
                 logDebug(`Added song (${info.id}).`);
             }
+            if (songData) {
+                await songSchema.findOneAndDelete({ _id: this.id });
+                logDebug(`Removed song (${this.id}).`);
+            }
+            if (playlistData.length > 0) {
+                playlistData.forEach(async (playlist) => {
+                    const targetSong = playlist.songs.find((v, i) => v.songId === this.id);
+                    playlist['songs'].push({ songId: info.id, index: targetSong?.index });
+                    playlist['songs'] = playlist.songs.filter((v, i) => v.songId !== this.id) as any;
+                    await playlistSchema.findOneAndUpdate(
+                        {
+                            _id: playlist._id
+                        },
+                        {
+                            songs: playlist.songs
+                        }
+                    )
+                })
+            }
+            this.channel = (info.channel.name) ? info.channel.name : null;
+            this.name = info.title;
+            this.url = info.url;
+            this.duration = info.durationInSec;
+            this.durationRaw = info.durationRaw;
+            this.id = info.id;
+            this.thumbnail = (info.thumbnails[0]) ? info.thumbnails[0].url : null;
+            this.handler = this.handler;
+            this.type = "YouTubeVideo";
         }
+<<<<<<< HEAD
         const archFile = `./src/archive/${this.id}-temp_audio.pcm`;
         if (!existsSync(archFile)) {
             // const output:any = await youtubedl(this.url, {
@@ -711,12 +776,49 @@ export class Song {
                     .format('s16le')
                     .output(archFile)
                     .on('end', resolve)
+=======
+        const archFile = `${__dirname}/archive/${this.id}-temp_audio.mp3`;
+        const tmpFile = `./src/temp/${this.id}-temp_audio.mp3`;
+        if (!existsSync(path.resolve(archFile))) {
+            const output: any = await youtubedl(this.url, {
+                format: 'bestaudio', // Get the best audio or change to "best" for video+audio
+                dumpSingleJson: true, // Return metadata in JSON format
+            });
+            // const volumeFactor = parseFloat((this.handler.volume / 1000).toPrecision(2));
+            this.isSeekable = false;
+            const ffmpegPromise = new Promise((resolve, reject) => {
+                logDebug(`Creating buffer file for song (${this.id}).`);
+                this.handler.downloading = ffmpeg(output.url)
+                    .audioCodec('libmp3lame')
+                    // .audioFilters(`volume=${volumeFactor}`) // Apply volume adjustment
+                    .format('mp3')
+                    .output(`./src/temp/${this.id}-temp_audio.mp3`)
+                    .addOption('-bufsize', '500M')
+                    .on('progress', (progress) => {
+                        if (progress.percent !== undefined && (progress.percent / 100 * this.duration) >= 30) {
+                            resolve(true);
+                        }
+                    })
+                    // .on('progress', (progress) => { logDebug(`Create Buffer Processing: ${progress.percent}%`) })
+                    .on('end', () => {
+                        logDebug(`Created buffer file (${tmpFile}) for song (${this.id}).`);
+                        this.isSeekable = true;
+                        fs.copyFile(tmpFile, `./src/archive/${this.id}-temp_audio.mp3`, (err) => {
+                            if (err) {
+                                logError(err, __filename);
+                            } else {
+                                logDebug(`Copied buffer file (${tmpFile}) to archive folder.`);
+                            }
+                        });
+                    })
+>>>>>>> 1584e19b25a509037b7c8fcb087b470c2dd5738f
                     .on('error', reject)
                     .run();
+                this.handler.songDownloading = this.id;
             });
             await ffmpegPromise;
-            logDebug(`Created buffer file (${archFile}) for song (${this.id}).`);
         }
+        return true;
     }
 }
 
@@ -729,16 +831,13 @@ export class Queue {
         this.handler = musicHandler;
         this.guild = musicHandler.guild;
         // Check for queue entry
-        queueSchema.findOne({ _id: clientId }).then((result) => {
-            if (result) {
-                if (result.songs.length > 0) {
+        queueSchema.findOne({ _id: clientId }).then((result1) => {
+            if (result1) {
+                if (result1.songs.length > 0) {
                     // Get song data from db
-                    songSchema.find({ _id: { $in: result.songs } }).then((result) => {
-                        result.forEach((song) => {
-                            // play.video_info(`https://www.youtube.com/watch?v=${songId}`).then((infoData) => {
-                            //     this.songs.push(new Song(infoData.video_details, this.handler));
-                            // })
-                            this.songs.push(new Song(song as dbSong, this.handler));
+                    songSchema.find({ _id: { $in: result1.songs } }).then((result2) => {
+                        result1.songs.forEach((song) => {
+                            this.songs.push(new Song(result2.find((s) => s._id === song) as dbSong, this.handler));
                         })
                     })
                 }
@@ -866,11 +965,11 @@ export class Queue {
     }
 
     async addPlaylist(url: string): Promise<any> {
-        type arrayWaiter = {
-            newSongs: Song[],
-            addElement(element: Song): void,
-            waitForFill(): Promise<unknown>
-        }
+        // type arrayWaiter = {
+        //     newSongs: Song[],
+        //     addElement(element: Song): void,
+        //     waitForFill(): Promise<unknown>
+        // }
         let newSongs: Song[] = [];
         if (url.includes('youtube.com')) {
             const info: YouTubePlayList = await play.playlist_info(url);
@@ -1016,7 +1115,6 @@ export class Queue {
                 },
                 waitForFill() {
                     return new Promise((resolve) => {
-                        console.log('waiting')
                         eventEmitter.on('filled', resolve);
                     });
                 },
@@ -1049,9 +1147,13 @@ export class Queue {
     }
 
     async removeSong(songId: string) {
-        const tmpFile = `./src/temp/${songId}-temp_audio.pcm`;
+        const tmpFile = `./src/temp/${songId}-temp_audio.mp3`;
         if (existsSync(tmpFile)) {
-            fs.rmSync(tmpFile);
+            try {
+                fs.rmSync(tmpFile);
+            } catch (error) {
+                console.log(error)
+            }
         }
         // Check if song is in queue
         const targetSong = this.songs.find((s) => s.id === songId);
@@ -1084,18 +1186,13 @@ export class Queue {
             throw `This position is not valid.`;
         }
         // Create new song list
-        const newList = new Array();
-        for (let i = 0; i < this.songs.length; i++) {
-            let tempSong = this.songs[i];
-            if (i === newPosition) {
-                newList.push(tempSong);
-                i++;
-                tempSong = this.songs[i];
-                newList.push(tempSong);
-            } else {
-                newList.push(tempSong);
+        let newList = new Array();
+        this.songs.filter((song) => song.id !== songId).forEach((v, i) => {
+            if (i === newPosition - 1) {
+                newList.push(targetSong);
             }
-        }
+            newList.push(v);
+        });
         this.songs = newList;
         // Check if song is in correct position
         if (this.songs[newPosition - 1].id !== songId) {
@@ -1108,28 +1205,42 @@ export class Queue {
             },
             {
                 songs: this.songs.map((v, i) => v.id)
+            },
+            {
+                upsert: true
             }
         )
         return true
     }
 
     async shuffle() {
-        let newList: Song[] = [];
-        let randomNUmList: number[] = [];
-        let usedNums: number[] = [];
-        while (randomNUmList.length < this.songs.length) {
-            const randomNum = getRandomInteger(0, this.songs.length - 1);
-            if (!usedNums.includes(randomNum)) {
-                randomNUmList.push(getRandomInteger(0, this.songs.length - 1));
-                usedNums.push(randomNum);
-            }
+        // Exclude the first element for shuffling
+        const toShuffle = this.songs.slice(1);
+
+        // Shuffle the array using Fisher-Yates Algorithm
+        for (let i = toShuffle.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [toShuffle[i], toShuffle[j]] = [toShuffle[j], toShuffle[i]];
         }
-        randomNUmList.forEach((num: number) => {
-            newList.push(this.songs[num]);
-        })
-        this.songs = newList;
+        this.songs = [this.songs[0], ...toShuffle];
     }
 }
 function getRandomInteger(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+async function cr(songIndex: number, queue: Queue) {
+    if (queue.songs.length === 0) {
+        return false;
+    }
+    const result2 = await queue.songs[songIndex].createBufferedResource();
+    if (result2 === true) {
+        return true;
+    } else {
+        queue.removeSong(queue.songs[songIndex].id);
+        if (queue.songs.length > songIndex) {
+            return await cr(songIndex, queue);
+        } else {
+            return false;
+        }
+    }
 }

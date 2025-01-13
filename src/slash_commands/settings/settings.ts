@@ -24,10 +24,10 @@ module.exports = {
             if (!guild) {
                 throw new Error("No guild found.");
             }
-            const devList = ["339917839483797504"];
+            const allowed = ["339917839483797504", "160593366332080131", "781624383319965707", "648972356475420682"];
             if (_group === "set") {
                 // Check if member has manage messages perms or matches ids
-                if (!member.permissions.any(PermissionsBitField.Flags.ManageMessages) && !devList.includes(member.id)) {
+                if (!member.permissions.any(PermissionsBitField.Flags.ManageMessages) && !allowed.includes(member.id)) {
                     throw `You do not have access to this command.`;
                 }
                 // Check if settings exist
@@ -60,12 +60,15 @@ module.exports = {
                     logDebug(`Updated channelId for guild (${guild.id}): ${settings?.channelId} -> ${targetChannel.id}`);
                     const replyEmbed = new EmbedBuilder()
                         .setTitle('**Settings Set Channel**')
-                        .setDescription(`You have set the music command channel to ${targetChannel}.`)
+                        .setDescription(`You have set the music updates channel to ${targetChannel}.`)
                         .setColor(Colors.Green)
                         .setFooter(embedFooter)
                     interaction.editReply({
                         embeds: [replyEmbed]
                     });
+                    setTimeout(() => {
+                        interaction.deleteReply();
+                    }, 10000);
                 } else if (_subcommand === "dj_role") {
                     const targetRole: Role = _hoistedOptions[0].role;
                     if (settings?.djRoleId === targetRole.id) {
@@ -88,6 +91,9 @@ module.exports = {
                     interaction.editReply({
                         embeds: [replyEmbed]
                     });
+                    setTimeout(() => {
+                        interaction.deleteReply();
+                    }, 10000);
                 } else if (_subcommand === "skip_enabled") {
                     const enabled: Boolean = _hoistedOptions[0].value;
                     if (settings?.skipEnabled === enabled) {
@@ -110,6 +116,9 @@ module.exports = {
                     interaction.editReply({
                         embeds: [replyEmbed]
                     });
+                    setTimeout(() => {
+                        interaction.deleteReply();
+                    }, 10000);
                 } else if (_subcommand === "volume_enabled") {
                     const enabled: Boolean = _hoistedOptions[0].value;
                     if (settings?.skipEnabled === enabled) {
@@ -132,6 +141,9 @@ module.exports = {
                     interaction.editReply({
                         embeds: [replyEmbed]
                     });
+                    setTimeout(() => {
+                        interaction.deleteReply();
+                    }, 10000);
                 }
                 else if (_subcommand === "volume") {
                     const volume: number = _hoistedOptions[0].value;
@@ -159,6 +171,9 @@ module.exports = {
                     interaction.editReply({
                         embeds: [replyEmbed]
                     });
+                    setTimeout(() => {
+                        interaction.deleteReply();
+                    }, 10000);
                 }
             }
         } catch (content: any) {
@@ -197,7 +212,7 @@ module.exports = {
                 .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
                     subcommand
                         .setName('channel')
-                        .setDescription('Channel where music commands are allowed.')
+                        .setDescription('Channel where music updates send.')
                         .addChannelOption((option: SlashCommandChannelOption) =>
                             option
                                 .setName('channel')
