@@ -78,9 +78,10 @@ module.exports = {
                     thumbnail: playlist.thumbnailURL,
                     songs: []
                 }).catch((err) => { throw new Error(err) });
+                const newPlaylist = await playlistSchema.findOne({ _id: playlistId });
                 const replyEmbed = new EmbedBuilder()
                     .setTitle('**Playlist Create**')
-                    .setDescription(`You have created a new playlist named **${playlist.name}**.`)
+                    .setDescription(`You have created a new playlist named **${playlist.name}** with id **${playlistId.split("-")[1]}**.`)
                     .setColor(Colors.Green)
                     .setFooter(embedFooter)
                 interaction.editReply({
@@ -158,7 +159,6 @@ module.exports = {
                 if (allPlaylists.length === 0) {
                     throw "You have no playlists.";
                 }
-
                 let newSong: Song | null = null;
                 const url = _hoistedOptions[0].value;
                 if (url.includes('youtube.com') || url.includes('youtu.be')) {
@@ -298,6 +298,73 @@ module.exports = {
                     components: (textList.length > 1) ? [row, row2] : [row]
                 });
 
+            } else if (_subcommand === "remove_song") {
+                const targetUser = (!_hoistedOptions[0]) ? member : guild.members.cache.get(_hoistedOptions[0].value);
+                if (!targetUser) {
+                    throw "This member is not in the server.";
+                }
+                const allPlaylists = await playlistSchema.find({ owner: targetUser.id });
+                let textList: any = [];
+                let charCount: any = [];
+                let components: any = [];
+                let index = 1;
+                let listIndex = 0;
+                allPlaylists.forEach((playlist) => {
+                    const text = `**${playlist.name}**\nID: **${playlist.id.split("-")[1]}**\n${(playlist.description) ? `> ${playlist.description}\n` : ""}Songs: **${playlist.songs.length}**\n\n`;
+                    if (!textList[listIndex]) {
+                        textList[listIndex] = [];
+                    }
+                    if (!charCount[listIndex]) {
+                        charCount[listIndex] = 0;
+                    }
+                    if (!components[listIndex]) {
+                        components[listIndex] = [];
+                    }
+                    if (charCount[listIndex] > 3900 || components[listIndex].length === 24) {
+                        listIndex++;
+                        textList[listIndex] = [];
+                        charCount[listIndex] = 0;
+                        components[listIndex] = [];
+                    }
+                    textList[listIndex].push(text);
+                    charCount[listIndex] += text.length;
+                    const component = new StringSelectMenuOptionBuilder()
+                        .setLabel(playlist.name)
+                        .setValue(playlist.id)
+                        .setDescription(`Songs: ${playlist.songs.length}`)
+                    components[listIndex].push(component);
+                    index++;
+                })
+                const row = new ActionRowBuilder()
+                    .setComponents(
+                        new StringSelectMenuBuilder()
+                            .setCustomId(`music-playlist-remove-select-${targetUser.id}`)
+                            .setMinValues(1)
+                            .setMaxValues(1)
+                            .setOptions(components[listIndex])
+                    )
+                const row2 = new ActionRowBuilder()
+                    .setComponents(
+                        new ButtonBuilder()
+                            .setCustomId(`music-playlist-remove-prev-0-${targetUser.id}`)
+                            .setLabel('Prev')
+                            .setEmoji({ name: "⬅️" })
+                            .setStyle(ButtonStyle.Primary),
+                        new ButtonBuilder()
+                            .setCustomId(`music-playlist-remove-next-0-${targetUser.id}`)
+                            .setLabel('Next')
+                            .setEmoji({ name: "➡️" })
+                            .setStyle(ButtonStyle.Primary)
+                    )
+                const replyEmbed = new EmbedBuilder()
+                    .setTitle(`**${targetUser.displayName}\'s Playlists**`)
+                    .setDescription(textList[0].join(""))
+                    .setColor(Colors.Blue)
+                    .setFooter(embedFooter)
+                interaction.editReply({
+                    embeds: [replyEmbed],
+                    components: (textList.length > 1) ? [row, row2] : [row]
+                });
             } else if (_subcommand === "add_playlist") {
                 // Get all playlists
                 const allPlaylists = await playlistSchema.find({ owner: member.id });
@@ -346,18 +413,15 @@ module.exports = {
                                 throw `Was unable to find any songs in this playlist.`;
                             }
                             const songlist = createArrayWaiter(allSongs.length);
-                            allSongs.forEach(async (songData) => {
-                                const search = await play.search(`${songData.name} ${songData.artists.map((v, i) => v.name).join(" ")}`, {
-                                    limit: 1
-                                });
-                                const info: InfoData = await play.video_info(search[0].url);
-                                if (!info.video_details) {
-                                    throw "No video details found.";
-                                }
+                            allSongs.forEach(async (songData: SpotifyTrack) => {
+                                // const search = await play.search(`${songData.name} ${songData.artists.map((v, i) => v.name).join(" ")}`, {
+                                //     limit: 1
+                                // });
+                                // const info: InfoData = await play.video_info(search[0].url);
                                 // newSongs.push(new Song(info.video_details, handler))
-                                songlist.addElement(new Song(info.video_details, handler))
+                                songlist.addElement(new Song(songData, handler))
                             })
-                            newSongs = (await songlist.waitForFill()) as Song[];
+                            newSongs = await songlist.waitForFill() as Song[];
                         } else if (sp_data.type === 'album') {
                             const data = sp_data as SpotifyAlbum;
                             // Get songs from playlist
@@ -366,18 +430,18 @@ module.exports = {
                                 throw `Was unable to find any songs in this album.`;
                             }
                             const songlist = createArrayWaiter(allSongs.length);
-                            allSongs.forEach(async (songData) => {
-                                const search = await play.search(`${songData.name} ${songData.artists.map((v, i) => v.name).join(" ")}`, {
-                                    limit: 1
-                                });
-                                const info: InfoData = await play.video_info(search[0].url);
-                                if (!info.video_details) {
-                                    throw "No video details found.";
-                                }
-                                // newSongs.push(new Song(info.video_details, handler))
-                                songlist.addElement(new Song(info.video_details, handler))
-                            })
                             newSongs = (await songlist.waitForFill()) as Song[];
+                            allSongs.forEach(async (songData: SpotifyTrack) => {
+                                // const search = await play.search(`${songData.name} ${songData.artists.map((v, i) => v.name).join(" ")}`, {
+                                //     limit: 1
+                                // });
+                                // const info: InfoData = await play.video_info(search[0].url);
+                                // if (!info.video_details) {
+                                //     throw "No video details found.";
+                                // }
+                                // newSongs.push(new Song(info.video_details, handler))
+                                songlist.addElement(new Song(songData, handler))
+                            })
                         } else {
                             throw `This url is not a playlist or album.`;
                         }
@@ -391,17 +455,17 @@ module.exports = {
                             throw `Was unable to find any songs in this playlist.`;
                         }
                         const songlist = createArrayWaiter(allSongs.length);
-                        allSongs.forEach(async (songData) => {
-                            const search = await play.search(`${songData.name} by ${songData.user.name}`, {
-                                limit: 1
-                            });
-                            const info: InfoData = await play.video_info(search[0].url);
-                            if (!info.video_details) {
-                                throw "No video details found.";
-                            }
+                        allSongs.forEach(async (songData: SoundCloudTrack) => {
+                            // const search = await play.search(`${songData.name} by ${songData.user.name}`, {
+                            //     limit: 1
+                            // });
+                            // const info: InfoData = await play.video_info(search[0].url);
+                            // if (!info.video_details) {
+                            //     throw "No video details found.";
+                            // }
                             // newSongs.push(new Song(info.video_details, handler))
 
-                            songlist.addElement(new Song(info.video_details, handler))
+                            songlist.addElement(new Song(songData, handler))
                         });
                         newSongs = (await songlist.waitForFill()) as Song[];
                     } else {
@@ -414,22 +478,20 @@ module.exports = {
                 }
                 // Check if song is in db
                 const songData = await songSchema.find({ _id: { $in: newSongs.map((v, i) => v.id) } });
-                if (songData.length > 0) {
-                    newSongs.forEach(async (newSong) => {
-                        if (!songData.find(s => s.id === newSong.id)) {
-                            await songSchema.create({
-                                _id: newSong.id,
-                                songURL: newSong.url,
-                                name: newSong.name,
-                                channel: newSong.channel,
-                                thumbnailURL: newSong.thumbnail,
-                                durationInSec: newSong.duration,
-                                durationRaw: newSong.durationRaw
-                            })
-                            logDebug(`Added song (${newSong.id}).`);
-                        }
-                    })
-                }
+                newSongs.forEach(async (newSong) => {
+                    if (!songData.find(s => s.id === newSong.id)) {
+                        await songSchema.create({
+                            _id: newSong.id,
+                            songURL: newSong.url,
+                            name: newSong.name,
+                            channel: newSong.channel,
+                            thumbnailURL: newSong.thumbnail,
+                            durationInSec: newSong.duration,
+                            durationRaw: newSong.durationRaw
+                        })
+                        logDebug(`Added song (${newSong.id}).`);
+                    }
+                })
                 if (targetPlaylist.songs.length > 0) {
                     const songs = targetPlaylist.songs.sort((a, b) => b.index - a.index);
                     let newSongList: Array<any> = [];
@@ -467,6 +529,9 @@ module.exports = {
                 interaction.editReply({
                     embeds: [replyEmbed]
                 });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
             } else if (_subcommand === "copy") {
                 const targetUser = guild.members.cache.get(_hoistedOptions[0].value);
                 if (!targetUser) {
@@ -709,6 +774,11 @@ module.exports = {
         )
         .addSubcommand(subcommand =>
             subcommand
+                .setName('remove_song')
+                .setDescription('Remove a single song from custom playlist(s).')
+        )
+        .addSubcommand(subcommand =>
+            subcommand
                 .setName('add_playlist')
                 .setDescription('Add a whole playlist to custom playlist(s).')
                 .addNumberOption(option =>
@@ -760,10 +830,13 @@ function createArrayWaiter(targetLength: number) {
             }
         },
         waitForFill() {
-            return new Promise((resolve) => {
-                console.log('waiting')
-                eventEmitter.on('filled', resolve);
-            });
+            if (newSongs.length >= targetLength) {
+                return newSongs;
+            } else {
+                return new Promise((resolve) => {
+                    eventEmitter.on('filled', resolve);
+                });
+            }
         },
     };
 }

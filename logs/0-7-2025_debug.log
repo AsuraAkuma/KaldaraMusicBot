@@ -1,0 +1,376 @@
+Start of debug log: Tue, 07 Jan 2025 09:23:57 GMT
+Format: [Timestamp] Message
+
+[Tue, 07 Jan 2025 09:23:57 GMT] Created audio stream for song (Z99r74EMWP8).
+
+[Tue, 07 Jan 2025 09:23:58 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:23:58 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:24:21 GMT] Updated volume for guild (1221985499158286366): 100% -> 60%
+
+[Tue, 07 Jan 2025 09:24:40 GMT] Created audio stream for song (Z99r74EMWP8).
+
+[Tue, 07 Jan 2025 09:24:40 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:24:40 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:24:40 GMT] Created audio stream for song (fCeiUX59_FM).
+
+[Tue, 07 Jan 2025 09:24:40 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:24:41 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:25:13 GMT] Audio has finished playing.
+
+[Tue, 07 Jan 2025 09:25:20 GMT] Created audio stream for song (-ybnOHBNZyA).
+
+[Tue, 07 Jan 2025 09:25:20 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:25:20 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:25:35 GMT] Updated volume for guild (1221985499158286366): 60% -> 100%
+
+[Tue, 07 Jan 2025 09:25:56 GMT] Created audio stream for song (-ybnOHBNZyA).
+
+[Tue, 07 Jan 2025 09:25:56 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:25:57 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:25:57 GMT] Created audio stream for song (2Pzkh0qr48Y).
+
+[Tue, 07 Jan 2025 09:25:57 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:25:57 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:26:21 GMT] Created audio stream for song (2Pzkh0qr48Y).
+
+[Tue, 07 Jan 2025 09:26:22 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:26:22 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:28:17 GMT] Creating buffer file for song (2Pzkh0qr48Y).
+
+[Tue, 07 Jan 2025 09:28:20 GMT] Created audio stream for song (2Pzkh0qr48Y).
+
+[Tue, 07 Jan 2025 09:28:21 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:28:21 GMT] Created buffer file (./src/temp/2Pzkh0qr48Y-temp_audio.pcm) for song (2Pzkh0qr48Y).
+
+[Tue, 07 Jan 2025 09:28:21 GMT] Copied buffer file (./src/temp/2Pzkh0qr48Y-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:28:21 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:28:25 GMT] Creating buffer file for song (2rlkKix7lrQ).
+
+[Tue, 07 Jan 2025 09:28:26 GMT] Created buffer file (./src/temp/2rlkKix7lrQ-temp_audio.pcm) for song (2rlkKix7lrQ).
+
+[Tue, 07 Jan 2025 09:28:26 GMT] Copied buffer file (./src/temp/2rlkKix7lrQ-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:28:55 GMT] Updated volume for guild (1221985499158286366): 100% -> 50%
+
+[Tue, 07 Jan 2025 09:29:10 GMT] Removed temp audio file (./src/temp/2Pzkh0qr48Y-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 09:29:11 GMT] Created audio stream for song (2rlkKix7lrQ).
+
+[Tue, 07 Jan 2025 09:29:11 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:29:11 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:29:15 GMT] Creating buffer file for song (3_umUPVwrq8).
+
+[Tue, 07 Jan 2025 09:29:16 GMT] Created buffer file (./src/temp/3_umUPVwrq8-temp_audio.pcm) for song (3_umUPVwrq8).
+
+[Tue, 07 Jan 2025 09:29:16 GMT] Copied buffer file (./src/temp/3_umUPVwrq8-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:29:20 GMT] Updated volume for guild (1221985499158286366): 50% -> 10%
+
+[Tue, 07 Jan 2025 09:29:27 GMT] Removed temp audio file (./src/temp/2rlkKix7lrQ-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 09:29:27 GMT] Created audio stream for song (3_umUPVwrq8).
+
+[Tue, 07 Jan 2025 09:29:27 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:29:27 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:29:32 GMT] Creating buffer file for song (6Z0BB2qo8FE).
+
+[Tue, 07 Jan 2025 09:29:33 GMT] Created buffer file (./src/temp/6Z0BB2qo8FE-temp_audio.pcm) for song (6Z0BB2qo8FE).
+
+[Tue, 07 Jan 2025 09:29:33 GMT] Copied buffer file (./src/temp/6Z0BB2qo8FE-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:29:34 GMT] Updated volume for guild (1221985499158286366): 10% -> 100%
+
+[Tue, 07 Jan 2025 09:29:43 GMT] Removed temp audio file (./src/temp/3_umUPVwrq8-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 09:29:43 GMT] Created audio stream for song (6Z0BB2qo8FE).
+
+[Tue, 07 Jan 2025 09:29:43 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:29:43 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:29:48 GMT] Creating buffer file for song (7WM3s3stUcI).
+
+[Tue, 07 Jan 2025 09:29:49 GMT] Created buffer file (./src/temp/7WM3s3stUcI-temp_audio.pcm) for song (7WM3s3stUcI).
+
+[Tue, 07 Jan 2025 09:29:49 GMT] Copied buffer file (./src/temp/7WM3s3stUcI-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:30:25 GMT] Audio has finished playing.
+
+[Tue, 07 Jan 2025 09:32:23 GMT] Cleared temp folder (./src/temp).
+
+[Tue, 07 Jan 2025 09:32:41 GMT] Creating buffer file for song (Z99r74EMWP8).
+
+[Tue, 07 Jan 2025 09:32:41 GMT] Creating buffer file for song (fCeiUX59_FM).
+
+[Tue, 07 Jan 2025 09:32:44 GMT] Created buffer file (./src/temp/Z99r74EMWP8-temp_audio.pcm) for song (Z99r74EMWP8).
+
+[Tue, 07 Jan 2025 09:32:45 GMT] Created audio stream for song (Z99r74EMWP8).
+
+[Tue, 07 Jan 2025 09:32:46 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:32:46 GMT] Copied buffer file (./src/temp/Z99r74EMWP8-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:32:46 GMT] Created buffer file (./src/temp/fCeiUX59_FM-temp_audio.pcm) for song (fCeiUX59_FM).
+
+[Tue, 07 Jan 2025 09:32:46 GMT] Copied buffer file (./src/temp/fCeiUX59_FM-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:32:46 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:34:40 GMT] Updated channelId for guild (1221985499158286366): 1221985499158286369 -> 1322058498808352889
+
+[Tue, 07 Jan 2025 09:34:56 GMT] Created audio stream for song (fCeiUX59_FM).
+
+[Tue, 07 Jan 2025 09:34:56 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:34:56 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:35:11 GMT] Updated channelId for guild (1221985499158286366): 1322058498808352889 -> 1221985499158286369
+
+[Tue, 07 Jan 2025 09:36:24 GMT] Cleared temp folder (./src/temp).
+
+[Tue, 07 Jan 2025 09:53:22 GMT] Created audio stream for song (Z99r74EMWP8).
+
+[Tue, 07 Jan 2025 09:53:23 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:53:23 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:53:39 GMT] Created audio stream for song (fCeiUX59_FM).
+
+[Tue, 07 Jan 2025 09:53:39 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:53:40 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:53:41 GMT] Added song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 09:53:43 GMT] Removed song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 09:53:46 GMT] Creating buffer file for song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 09:53:47 GMT] Created buffer file (./src/temp/BMaT2nGaEVg-temp_audio.pcm) for song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 09:53:47 GMT] Copied buffer file (./src/temp/BMaT2nGaEVg-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:53:48 GMT] Creating buffer file for song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 09:53:50 GMT] Created audio stream for song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 09:53:50 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:53:50 GMT] Created buffer file (./src/temp/BMaT2nGaEVg-temp_audio.pcm) for song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 09:53:50 GMT] Copied buffer file (./src/temp/BMaT2nGaEVg-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:53:50 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:53:52 GMT] Added song (IIsWmB28AdM).
+
+[Tue, 07 Jan 2025 09:53:56 GMT] Creating buffer file for song (IIsWmB28AdM).
+
+[Tue, 07 Jan 2025 09:53:57 GMT] Created buffer file (./src/temp/IIsWmB28AdM-temp_audio.pcm) for song (IIsWmB28AdM).
+
+[Tue, 07 Jan 2025 09:53:57 GMT] Copied buffer file (./src/temp/IIsWmB28AdM-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:57:11 GMT] Removed temp audio file (./src/temp/BMaT2nGaEVg-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 09:57:12 GMT] Created audio stream for song (IIsWmB28AdM).
+
+[Tue, 07 Jan 2025 09:57:12 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:57:12 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:57:14 GMT] Added song (iLhGzrecpQ4).
+
+[Tue, 07 Jan 2025 09:57:18 GMT] Creating buffer file for song (iLhGzrecpQ4).
+
+[Tue, 07 Jan 2025 09:57:19 GMT] Created buffer file (./src/temp/iLhGzrecpQ4-temp_audio.pcm) for song (iLhGzrecpQ4).
+
+[Tue, 07 Jan 2025 09:57:19 GMT] Copied buffer file (./src/temp/iLhGzrecpQ4-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:57:57 GMT] Removed temp audio file (./src/temp/IIsWmB28AdM-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 09:57:58 GMT] Created audio stream for song (iLhGzrecpQ4).
+
+[Tue, 07 Jan 2025 09:57:58 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 09:57:58 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 09:58:00 GMT] Added song (FrARlI83tjA).
+
+[Tue, 07 Jan 2025 09:58:04 GMT] Creating buffer file for song (FrARlI83tjA).
+
+[Tue, 07 Jan 2025 09:58:06 GMT] Created buffer file (./src/temp/FrARlI83tjA-temp_audio.pcm) for song (FrARlI83tjA).
+
+[Tue, 07 Jan 2025 09:58:06 GMT] Copied buffer file (./src/temp/FrARlI83tjA-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 09:59:28 GMT] Cleared temp folder (./src/temp).
+
+[Tue, 07 Jan 2025 09:59:28 GMT] Cleared the queue for bot (1310116919403216997).
+
+[Tue, 07 Jan 2025 09:59:35 GMT] Audio has finished playing.
+
+[Tue, 07 Jan 2025 09:59:35 GMT] Cleared the queue for bot (1310116919403216997).
+
+[Tue, 07 Jan 2025 10:00:08 GMT] Added song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 10:00:09 GMT] Created audio stream for song (BMaT2nGaEVg).
+
+[Tue, 07 Jan 2025 10:00:09 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:00:09 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:00:29 GMT] Created audio stream for song (IIsWmB28AdM).
+
+[Tue, 07 Jan 2025 10:00:29 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:00:29 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:00:33 GMT] Created audio stream for song (iLhGzrecpQ4).
+
+[Tue, 07 Jan 2025 10:00:33 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:00:33 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:00:59 GMT] Created audio stream for song (FrARlI83tjA).
+
+[Tue, 07 Jan 2025 10:00:59 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:00:59 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:01:01 GMT] Added song (NoBAfjvhj7o).
+
+[Tue, 07 Jan 2025 10:01:05 GMT] Creating buffer file for song (NoBAfjvhj7o).
+
+[Tue, 07 Jan 2025 10:01:07 GMT] Created buffer file (./src/temp/NoBAfjvhj7o-temp_audio.pcm) for song (NoBAfjvhj7o).
+
+[Tue, 07 Jan 2025 10:01:07 GMT] Copied buffer file (./src/temp/NoBAfjvhj7o-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 10:01:11 GMT] Created audio stream for song (NoBAfjvhj7o).
+
+[Tue, 07 Jan 2025 10:01:11 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:01:11 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:01:13 GMT] Added song (P5nu_C2_xzQ).
+
+[Tue, 07 Jan 2025 10:01:16 GMT] Creating buffer file for song (P5nu_C2_xzQ).
+
+[Tue, 07 Jan 2025 10:01:18 GMT] Removed temp audio file (./src/temp/NoBAfjvhj7o-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 10:01:22 GMT] Creating buffer file for song (P5nu_C2_xzQ).
+
+[Tue, 07 Jan 2025 10:01:39 GMT] Created audio stream for song (P5nu_C2_xzQ).
+
+[Tue, 07 Jan 2025 10:01:39 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:01:39 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:01:41 GMT] Added song (3HCtJ5m96YE).
+
+[Tue, 07 Jan 2025 10:01:46 GMT] Creating buffer file for song (3HCtJ5m96YE).
+
+[Tue, 07 Jan 2025 10:01:47 GMT] Created buffer file (./src/temp/3HCtJ5m96YE-temp_audio.pcm) for song (3HCtJ5m96YE).
+
+[Tue, 07 Jan 2025 10:01:47 GMT] Copied buffer file (./src/temp/3HCtJ5m96YE-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 10:04:10 GMT] Audio has finished playing.
+
+[Tue, 07 Jan 2025 10:07:17 GMT] Cleared temp folder (./src/temp).
+
+[Tue, 07 Jan 2025 10:09:15 GMT] Added song (BV64jJwvTUQ).
+
+[Tue, 07 Jan 2025 10:09:51 GMT] Added song (HJuRdJ3_l-Q).
+
+[Tue, 07 Jan 2025 10:10:06 GMT] Added song (5GPlK8dRvps).
+
+[Tue, 07 Jan 2025 10:10:25 GMT] Added song (t6F2xd2BjHM).
+
+[Tue, 07 Jan 2025 10:12:20 GMT] Creating buffer file for song (BV64jJwvTUQ).
+
+[Tue, 07 Jan 2025 10:12:20 GMT] Creating buffer file for song (5GPlK8dRvps).
+
+[Tue, 07 Jan 2025 10:12:24 GMT] Created buffer file (./src/temp/BV64jJwvTUQ-temp_audio.pcm) for song (BV64jJwvTUQ).
+
+[Tue, 07 Jan 2025 10:12:24 GMT] Copied buffer file (./src/temp/BV64jJwvTUQ-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 10:12:25 GMT] Created audio stream for song (5GPlK8dRvps).
+
+[Tue, 07 Jan 2025 10:12:26 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:12:26 GMT] Created buffer file (./src/temp/5GPlK8dRvps-temp_audio.pcm) for song (5GPlK8dRvps).
+
+[Tue, 07 Jan 2025 10:12:26 GMT] Copied buffer file (./src/temp/5GPlK8dRvps-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 10:12:26 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:12:44 GMT] Removed temp audio file (./src/temp/5GPlK8dRvps-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 10:12:44 GMT] Created audio stream for song (BV64jJwvTUQ).
+
+[Tue, 07 Jan 2025 10:12:44 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:12:44 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:12:48 GMT] Creating buffer file for song (t6F2xd2BjHM).
+
+[Tue, 07 Jan 2025 10:12:49 GMT] Created buffer file (./src/temp/t6F2xd2BjHM-temp_audio.pcm) for song (t6F2xd2BjHM).
+
+[Tue, 07 Jan 2025 10:12:50 GMT] Copied buffer file (./src/temp/t6F2xd2BjHM-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 10:12:55 GMT] Removed temp audio file (./src/temp/BV64jJwvTUQ-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 10:12:55 GMT] Created audio stream for song (t6F2xd2BjHM).
+
+[Tue, 07 Jan 2025 10:12:55 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:12:55 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:13:02 GMT] Audio has finished playing.
+
+[Tue, 07 Jan 2025 10:30:35 GMT] Creating buffer file for song (-ybnOHBNZyA).
+
+[Tue, 07 Jan 2025 10:30:38 GMT] Created audio stream for song (-ybnOHBNZyA).
+
+[Tue, 07 Jan 2025 10:30:38 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:30:38 GMT] Created buffer file (./src/temp/-ybnOHBNZyA-temp_audio.pcm) for song (-ybnOHBNZyA).
+
+[Tue, 07 Jan 2025 10:30:38 GMT] Copied buffer file (./src/temp/-ybnOHBNZyA-temp_audio.pcm) to archive folder.
+
+[Tue, 07 Jan 2025 10:30:38 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:33:08 GMT] Removed temp audio file (./src/temp/-ybnOHBNZyA-temp_audio.pcm)
+
+[Tue, 07 Jan 2025 10:33:09 GMT] Created audio stream for song (2Pzkh0qr48Y).
+
+[Tue, 07 Jan 2025 10:33:09 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:33:09 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:46:15 GMT] Created audio stream for song (2Pzkh0qr48Y).
+
+[Tue, 07 Jan 2025 10:46:16 GMT] Audio is now buffering!
+
+[Tue, 07 Jan 2025 10:46:16 GMT] Audio is now playing!
+
+[Tue, 07 Jan 2025 10:46:37 GMT] Audio is now paused!

@@ -8,15 +8,15 @@ import fs from 'fs';
 import logDebug from './logDebug';
 import buttonHandler from './events/button';
 import selectHandler from './events/select';
+import commandSchema from './schemas/command-schema';
 // import settingsSchema from './schemas/settings-schema';
 // Initialize client
 const client: Client = new Client({ partials: [Partials.Channel], intents: [IntentsBitField.Flags.MessageContent, IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMessages, IntentsBitField.Flags.GuildVoiceStates] });
-const express = require('express');
-const app = express();
-const { port } = require('./config.json');
-app.use(express.json());
-app.listen(port, () => console.log(`Listening on port ${port}!`))
-console.log('Kaldara Music Server is online!');
+// const express = require('express');
+// const app = express();
+// const { port } = require('./config.json');
+// app.use(express.json());
+// app.listen(port, () => console.log(`Listening on port ${port}!`))
 
 // Compile slash commands
 let commands: any = [];
@@ -67,7 +67,7 @@ client.once('ready', async () => {
         fs.mkdirSync('./src/archive');
         logDebug("Created archive folder (./src/archive).");
     }
-    await client.guilds.cache.forEach(async (guild) => {
+    client.guilds.cache.forEach(async (guild) => {
         rest.put(Routes.applicationGuildCommands(clientId, guild.id), { body: commands }).then(() => { });
         if (!handlers[guild.id]) {
             handlers[guild.id] = new MusicHandler(guild);
@@ -111,7 +111,9 @@ client.once('ready', async () => {
     client.on('guildCreate', async (guild) => {
         rest.put(Routes.applicationGuildCommands(clientId, guild.id), { body: commands }).then(() => { });
     });
-
+    // Send commands to db
+    await commandSchema.findOneAndUpdate({ _id: clientId }, { commands: commands }, { upsert: true });
+    console.log('Kaldara Music Server is online!');
 });
 
 client.login(token);

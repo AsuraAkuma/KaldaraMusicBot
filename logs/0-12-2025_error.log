@@ -1,0 +1,44 @@
+Start of error log: Sun, 12 Jan 2025 07:37:27 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Sun, 12 Jan 2025 07:37:27 GMT] [] Error: ENOENT: no such file or directory, open 'C:\Github\KaldaraMusicBot\src\temp\LiwvETSBoPA-temp_audio.pcm'
+
+[Sun, 12 Jan 2025 07:37:27 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed
+
+[Sun, 12 Jan 2025 07:39:45 GMT] [] Error: ENOENT: no such file or directory, open 'C:\Github\KaldaraMusicBot\src\temp\LiwvETSBoPA-temp_audio.pcm'
+
+[Sun, 12 Jan 2025 07:39:45 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed
+
+[Sun, 12 Jan 2025 07:41:47 GMT] [] Error: ENOENT: no such file or directory, open 'C:\Github\KaldaraMusicBot\src\temp\LiwvETSBoPA-temp_audio.pcm'
+
+[Sun, 12 Jan 2025 07:41:47 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed
+
+[Sun, 12 Jan 2025 09:11:44 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed
+
+[Sun, 12 Jan 2025 09:17:19 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.pcm'
+
+[Sun, 12 Jan 2025 09:21:33 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.pcm'
+
+[Sun, 12 Jan 2025 09:23:11 GMT] [music\queue.ts] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.pcm'
+
+[Sun, 12 Jan 2025 09:36:04 GMT] [music\play.ts] Error: Output format pcm is not available
+
+[Sun, 12 Jan 2025 09:49:49 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed
+
+[Sun, 12 Jan 2025 10:12:46 GMT] [] Error: Premature close
+
+[Sun, 12 Jan 2025 10:12:46 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed
+
+[Sun, 12 Jan 2025 11:02:53 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.mp3'
+
+[Sun, 12 Jan 2025 11:06:35 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.mp3'
+
+[Sun, 12 Jan 2025 11:08:14 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.mp3'
+
+[Sun, 12 Jan 2025 11:09:38 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.mp3'
+
+[Sun, 12 Jan 2025 11:12:32 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.mp3'
+
+[Sun, 12 Jan 2025 11:14:30 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.mp3'
+
+[Sun, 12 Jan 2025 11:17:34 GMT] [] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\zvKY_DnM1PA-temp_audio.mp3'

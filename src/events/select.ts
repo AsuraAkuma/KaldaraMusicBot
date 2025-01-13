@@ -39,7 +39,10 @@ export default async function selectHandler(client: Client, interaction: any, ha
                     throw "You are not in a voice channel.";
                 }
                 await handler.queue.addSong(values[0]);
-                handler.play(targetMember.voice.channel);
+                if (handler.isPlaying === false) {
+                    handler.play(targetMember.voice.channel);
+                }
+
                 const replyEmbed = new EmbedBuilder()
                     .setTitle('**Play Search**')
                     .setDescription(`Your song has been added to the queue.`)
@@ -54,7 +57,7 @@ export default async function selectHandler(client: Client, interaction: any, ha
                     await interaction.deferUpdate({ fetchReply: true });
                 }
                 if (customId[2] === "add") {
-                    const id = (customId[3] as string).split("").slice(1).join("");
+                    const id = interaction.customId.split("[")[1];
                     values.forEach(async (value: string) => {
                         const result = await playlistSchema.findOne({ _id: value });
                         if (result) {
@@ -95,6 +98,249 @@ export default async function selectHandler(client: Client, interaction: any, ha
                         embeds: [replyEmbed],
                         components: []
                     });
+                } else if (customId[2] === "remove") {
+                    if (customId[3] === "select") { // Selected playlist to remove songs from
+                        const targetUser = guild.members.cache.get(customId[4]);
+                        if (!targetUser) {
+                            throw "This member is not in the server.";
+                        }
+                        const targetPlaylist = await playlistSchema.findOne({ _id: values[0] });
+                        let textList: any = [];
+                        let charCount: any = [];
+                        let selectionList: Array<any> = [];
+                        let index = 1;
+                        let listIndex = 0;
+                        if (!targetPlaylist) {
+                            throw "This playlist does not exist.";
+                        }
+                        const songList = await songSchema.find({ _id: { $in: targetPlaylist.songs.sort((a, b) => a.index - b.index).map((v, i) => v.songId) } });
+                        if (songList.length === 0) {
+                            throw "Could not find any songs in this playlist.";
+                        }
+                        textList[0] = (targetPlaylist.description) ? [`## ${targetPlaylist.name}\n### Description:\n> ${targetPlaylist.description}\n### Songs:\n`] : [];
+                        charCount[0] = (targetPlaylist.description) ? (`## ${targetPlaylist.name}\n### Description:\n> ${targetPlaylist.description}\n### Songs:\n`).length : 0;
+                        songList.forEach((song) => {
+                            let text;
+                            if (song.songURL !== "Unknown") {
+                                text = `[**${song.name}**](${song.songURL})\nDuration: **${song.durationRaw}**\nChannel: **${song.channel}**\n\n`;
+                            } else {
+                                text = `**${song.name}**\nDuration: **${song.durationRaw}**\nChannel: **${song.channel}**\n\n`;
+                            }
+                            if (!textList[listIndex]) {
+                                textList[listIndex] = [];
+                            }
+                            if (!selectionList[listIndex]) {
+                                selectionList[listIndex] = [];
+                            }
+                            if (!charCount[listIndex]) {
+                                charCount[listIndex] = 0;
+                            }
+                            if (charCount[listIndex] > 3900 || selectionList[listIndex].length === 25) {
+                                listIndex++;
+                                textList[listIndex] = [];
+                                charCount[listIndex] = 0;
+                                selectionList[listIndex] = [];
+                            }
+                            textList[listIndex].push(text);
+                            selectionList[listIndex].push({ label: song.name, value: song._id });
+                            charCount[listIndex] += text.length;
+                            index++;
+                        })
+                        const row0 = new ActionRowBuilder()
+                            .setComponents(
+                                new StringSelectMenuBuilder()
+                                    .setCustomId(`music-playlist-remove-finish-[${targetPlaylist._id}`)
+                                    .setMinValues(1)
+                                    .setMaxValues(selectionList[0].length)
+                                    .setOptions(selectionList[0])
+                                    .setPlaceholder("Select the songs to remove")
+                            )
+                        const row = new ActionRowBuilder()
+                            .setComponents(
+                                new ButtonBuilder()
+                                    .setCustomId(`music-playlist-remove-back1-${targetUser.id}`)
+                                    .setLabel('Back')
+                                    .setEmoji({ name: "↩️" })
+                                    .setStyle(ButtonStyle.Secondary),
+                                new ButtonBuilder()
+                                    .setCustomId(`music-playlist-remove-prev1-0-[${targetPlaylist._id}`)
+                                    .setLabel('Prev')
+                                    .setEmoji({ name: "⬅️" })
+                                    .setStyle(ButtonStyle.Primary),
+                                new ButtonBuilder()
+                                    .setCustomId(`music-playlist-remove-next1-0-[${targetPlaylist._id}`)
+                                    .setLabel('Next')
+                                    .setEmoji({ name: "➡️" })
+                                    .setStyle(ButtonStyle.Primary),
+                                new ButtonBuilder()
+                                    .setCustomId(`music-playlist-remove-delete`)
+                                    .setLabel('Done')
+                                    .setEmoji({ name: "✔️" })
+                                    .setStyle(ButtonStyle.Success)
+                            )
+                        const row2 = new ActionRowBuilder()
+                            .setComponents(
+                                new ButtonBuilder()
+                                    .setCustomId(`music-playlist-remove-back1-${targetUser.id}`)
+                                    .setLabel('Back')
+                                    .setEmoji({ name: "↩️" })
+                                    .setStyle(ButtonStyle.Secondary),
+                                new ButtonBuilder()
+                                    .setCustomId(`music-playlist-remove-delete`)
+                                    .setLabel('Done')
+                                    .setEmoji({ name: "✔️" })
+                                    .setStyle(ButtonStyle.Success)
+                            )
+                        const embedFooter = {
+                            text: `${botName} [1 / ${textList.length}]`,
+                            iconURL: botImage
+                        }
+                        const replyEmbed = new EmbedBuilder()
+                            .setTitle(`**Playlist: Remove Song**`)
+                            .setDescription(textList[0].join(""))
+                            .setColor(Colors.Blue)
+                            .setFooter(embedFooter)
+                        if (targetPlaylist.thumbnail) {
+                            replyEmbed.setThumbnail(targetPlaylist.thumbnail);
+                        }
+                        interaction.editReply({
+                            embeds: [replyEmbed],
+                            components: (textList.length > 1) ? [row0, row] : [row0, row2]
+                        });
+                    } else if (customId[3] === "finish") { // Remove song from playlist
+                        let targetPlaylist = await playlistSchema.findOne({ _id: interaction.customId.split("[")[1] });
+                        const songsRemoved = await songSchema.find({ _id: { $in: values } });
+                        if (!targetPlaylist) {
+                            throw "This playlist does not exist.";
+                        }
+                        (targetPlaylist.songs as any) = targetPlaylist.songs.filter((song) => !values.includes(song.songId));
+                        await playlistSchema.updateOne(
+                            {
+                                _id: targetPlaylist._id
+                            },
+                            {
+                                songs: targetPlaylist.songs
+                            }
+                        )
+                        const replyEmbed = new EmbedBuilder()
+                            .setTitle(`**Playlist: Remove Song**`)
+                            .setDescription(`Song(s) removed from **${targetPlaylist.name}**:\n${songsRemoved?.map((song) => `- ${song.name}`).join("\n")}!`)
+                            .setColor(Colors.Green)
+                            .setFooter(embedFooter)
+                        interaction.editReply({
+                            embeds: [replyEmbed],
+                            components: []
+                        });
+                        // Reset display
+                        setTimeout(async () => {
+                            const targetUser = guild.members.cache.get(member.id);
+                            if (!targetUser) {
+                                throw "This member is not in the server.";
+                            }
+                            let textList: any = [];
+                            let charCount: any = [];
+                            let selectionList: any = [];
+                            let index = 1;
+                            let listIndex = 0;
+                            if (!targetPlaylist) {
+                                throw "This playlist does not exist.";
+                            }
+                            const songList = await songSchema.find({ _id: { $in: targetPlaylist.songs.sort((a, b) => a.index - b.index).map((v, i) => v.songId) } });
+                            if (songList.length === 0) {
+                                throw "Could not find any songs in this playlist.";
+                            }
+                            textList[0] = (targetPlaylist.description) ? [`## ${targetPlaylist.name}\n### Description:\n> ${targetPlaylist.description}\n### Songs:\n`] : [];
+                            charCount[0] = (targetPlaylist.description) ? (`## ${targetPlaylist.name}\n### Description:\n> ${targetPlaylist.description}\n### Songs:\n`).length : 0;
+                            songList.forEach((song) => {
+                                let text;
+                                if (song.songURL !== "Unknown") {
+                                    text = `[**${song.name}**](${song.songURL})\nDuration: **${song.durationRaw}**\nChannel: **${song.channel}**\n\n`;
+                                } else {
+                                    text = `**${song.name}**\nDuration: **${song.durationRaw}**\nChannel: **${song.channel}**\n\n`;
+                                }
+                                if (!textList[listIndex]) {
+                                    textList[listIndex] = [];
+                                }
+                                if (!selectionList[listIndex]) {
+                                    selectionList[listIndex] = [];
+                                }
+                                if (!charCount[listIndex]) {
+                                    charCount[listIndex] = 0;
+                                }
+                                if (charCount[listIndex] > 3900 || selectionList[listIndex].length === 25) {
+                                    listIndex++;
+                                    textList[listIndex] = [];
+                                    charCount[listIndex] = 0;
+                                    selectionList[listIndex] = [];
+                                }
+                                textList[listIndex].push(text);
+                                selectionList[listIndex].push({ label: song.name, value: song._id });
+                                charCount[listIndex] += text.length;
+                                index++;
+                            })
+                            const row0 = new ActionRowBuilder()
+                                .setComponents(
+                                    new StringSelectMenuBuilder()
+                                        .setCustomId(`music-playlist-remove-finish-[${targetPlaylist._id}`)
+                                        .setMinValues(1)
+                                        .setMaxValues(selectionList[0].length)
+                                        .setOptions(selectionList[0])
+                                        .setPlaceholder("Select the songs to remove")
+                                )
+                            const row = new ActionRowBuilder()
+                                .setComponents(
+                                    new ButtonBuilder()
+                                        .setCustomId(`music-playlist-remove-back1-${targetUser.id}`)
+                                        .setLabel('Back')
+                                        .setEmoji({ name: "↩️" })
+                                        .setStyle(ButtonStyle.Secondary),
+                                    new ButtonBuilder()
+                                        .setCustomId(`music-playlist-remove-prev1-0-[${targetPlaylist._id}`)
+                                        .setLabel('Prev')
+                                        .setEmoji({ name: "⬅️" })
+                                        .setStyle(ButtonStyle.Primary),
+                                    new ButtonBuilder()
+                                        .setCustomId(`music-playlist-remove-next1-0-[${targetPlaylist._id}`)
+                                        .setLabel('Next')
+                                        .setEmoji({ name: "➡️" })
+                                        .setStyle(ButtonStyle.Primary),
+                                    new ButtonBuilder()
+                                        .setCustomId(`music-playlist-remove-delete`)
+                                        .setLabel('Done')
+                                        .setEmoji({ name: "✔️" })
+                                        .setStyle(ButtonStyle.Success)
+                                )
+                            const row2 = new ActionRowBuilder()
+                                .setComponents(
+                                    new ButtonBuilder()
+                                        .setCustomId(`music-playlist-remove-back1-${targetUser.id}`)
+                                        .setLabel('Back')
+                                        .setEmoji({ name: "↩️" })
+                                        .setStyle(ButtonStyle.Secondary),
+                                    new ButtonBuilder()
+                                        .setCustomId(`music-playlist-remove-delete`)
+                                        .setLabel('Done')
+                                        .setEmoji({ name: "✔️" })
+                                        .setStyle(ButtonStyle.Success)
+                                )
+                            const embedFooter2 = {
+                                text: `${botName} [1 / ${textList.length}]`,
+                                iconURL: botImage
+                            }
+                            const replyEmbed2 = new EmbedBuilder()
+                                .setTitle(`**Playlist: Remove Song**`)
+                                .setDescription(textList[0].join(""))
+                                .setColor(Colors.Blue)
+                                .setFooter(embedFooter2)
+                            if (targetPlaylist.thumbnail) {
+                                replyEmbed.setThumbnail(targetPlaylist.thumbnail);
+                            }
+                            interaction.editReply({
+                                embeds: [replyEmbed2],
+                                components: (textList.length > 1) ? [row0, row] : [row0, row2]
+                            });
+                        }, 5000);
+                    }
                 } else if (customId[2] === "copy") {
                     const allPlaylists = await playlistSchema.find({ owner: member.id });
                     let textList: any = [];
@@ -206,10 +452,15 @@ export default async function selectHandler(client: Client, interaction: any, ha
                     if (songList.length === 0) {
                         throw "Could not find any songs in this playlist.";
                     }
-                    textList[0] = (targetPlaylist.description) ? [`> ${targetPlaylist.description}\n`] : [];
-                    charCount[0] = (targetPlaylist.description) ? (`> ${targetPlaylist.description}\n`).length : 0;
+                    textList[0] = (targetPlaylist.description) ? [`## ${targetPlaylist.name}\nID: ${targetPlaylist._id.split("-")[1]}\n### Description:\n> ${targetPlaylist.description}\n### Songs:\n`] : [];
+                    charCount[0] = (targetPlaylist.description) ? (`## ${targetPlaylist.name}\nID: ${targetPlaylist._id.split("-")[1]}\n### Description:\n> ${targetPlaylist.description}\n### Songs:\n`).length : 0;
                     songList.forEach((song) => {
-                        const text = `[**${song.name}**](${song.songURL})\nDuration: **${song.durationRaw}**\nChannel: **${song.channel}**\n\n`;
+                        let text;
+                        if (song.songURL !== "Unknown") {
+                            text = `[**${song.name}**](${song.songURL})\nDuration: **${song.durationRaw}**\nChannel: **${song.channel}**\n\n`;
+                        } else {
+                            text = `**${song.name}**\nDuration: **${song.durationRaw}**\nChannel: **${song.channel}**\n\n`;
+                        }
                         if (!textList[listIndex]) {
                             textList[listIndex] = [];
                         }
@@ -256,7 +507,7 @@ export default async function selectHandler(client: Client, interaction: any, ha
                         iconURL: botImage
                     }
                     const replyEmbed = new EmbedBuilder()
-                        .setTitle(`**${targetPlaylist.name}**`)
+                        .setTitle(`**View Playlist**`)
                         .setDescription(textList[0].join(""))
                         .setColor(Colors.Blue)
                         .setFooter(embedFooter)
