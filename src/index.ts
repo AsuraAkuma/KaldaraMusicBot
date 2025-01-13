@@ -12,11 +12,13 @@ import commandSchema from './schemas/command-schema';
 // import settingsSchema from './schemas/settings-schema';
 // Initialize client
 const client: Client = new Client({ partials: [Partials.Channel], intents: [IntentsBitField.Flags.MessageContent, IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMessages, IntentsBitField.Flags.GuildVoiceStates] });
-// const express = require('express');
-// const app = express();
-// const { port } = require('./config.json');
-// app.use(express.json());
-// app.listen(port, () => console.log(`Listening on port ${port}!`))
+const express = require('express');
+const app = express();
+const { port } = require('./config.json');
+app.use(express.json());
+app.use("/", require('./routes'));
+app.listen(port, "127.0.0.1", () => console.log(`Listening on port ${port}!`))
+console.log('Kaldara Music Server is online!');
 
 // Compile slash commands
 let commands: any = [];

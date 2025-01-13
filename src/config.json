@@ -8,8 +8,8 @@
     "botName": "Kaldara Music",
     "red": "#FF0000",
     "green": "#28a745",
-    "mongoPath": "mongodb://root:%24YojbNzXutoPy%40lt@127.0.0.1:27017/KaldaraMusic?authSource=admin",
+    "mongoPath": "mongodb://127.0.0.1:27017/KaldaraMusic",
     "black": "#000000",
-    "port": 3006,
+    "port": 3007,
     "botImage": "https://cdn.discordapp.com/attachments/1136559915356405842/1310139722856661093/km_small.PNG?ex=67442233&is=6742d0b3&hm=5be2b3a1565840266770f1800d7ea5e7c171fd9a7e16cf138d365bbed50e8d61&"
 }
