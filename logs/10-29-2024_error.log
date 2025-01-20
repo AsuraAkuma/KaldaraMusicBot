@@ -1,0 +1,65 @@
+Start of error log: Fri, 29 Nov 2024 17:52:45 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Fri, 29 Nov 2024 17:52:45 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+
+[Fri, 29 Nov 2024 17:55:37 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+
+[Fri, 29 Nov 2024 18:01:22 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+
+[Fri, 29 Nov 2024 18:20:56 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+
+[Fri, 29 Nov 2024 18:46:34 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+Traceback (most recent call last):
+  File "yt_dlp\__main__.py", line 17, in <module>
+  File "yt_dlp\__init__.py", line 1093, in main
+  File "yt_dlp\__init__.py", line 991, in _real_main
+  File "yt_dlp\YoutubeDL.py", line 990, in __exit__
+  File "yt_dlp\YoutubeDL.py", line 993, in close
+  File "yt_dlp\YoutubeDL.py", line 986, in save_cookies
+  File "yt_dlp\cookies.py", line 1314, in save
+  File "contextlib.py", line 135, in __enter__
+  File "yt_dlp\cookies.py", line 1269, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'PREF=tz=America.Chicago;HSID=Avp_VYlCYYgC7FgK-;SSID=Aj6T-_TpjE29z6-gO;SAPISID=qOsbQEcZip779WX2/AtHNzIfb7xm2kcga3;APISID=5hiFM9wVviyQmhw1/ARWPWgvL1oR_AEskR;SID=g.a000qgiZaWqF2Xnpichy8v-Ur3OOtSwoYqUzzLaCLjYNPafQ6_Hqb__SV3sl34W4UX75HsOCSQACgYKAVUSARMSFQHGX2Mix9IZKBZnB08hOXhdq3a-2xoVAUF8yKoDuLLCXshzPAjwLCu9sqPk0076;__Secure-3PSID=g.a000qgiZaWqF2Xnpichy8v-Ur3OOtSwoYqUzzLaCLjYNPafQ6_Hq4vqy2M1Hbk9y6WILbG0ZxAACgYKAYoSARMSFQHGX2MiVEngoenHYX0fH7OyW2aNmxoVAUF8yKoiTpWpC2NSADN7S2X1giXn0076;__Secure-1PAPISID=qOsbQEcZip779WX2/AtHNzIfb7xm2kcga3;__Secure-3PAPISID=qOsbQEcZip779WX2/AtHNzIfb7xm2kcga3;__Secure-1PSID=g.a000qgiZaWqF2Xnpichy8v-Ur3OOtSwoYqUzzLaCLjYNPafQ6_HqGVJrz-sLytC-G1fxbNMR0wACgYKAcsSARMSFQHGX2Mixf4o5wTThWWjjje5Oh7zphoVAUF8yKoREw1ZeUk8CKgb0aa5fcnt0076;LOGIN_INFO=AFmmF2swRAIgW4Udl2fcb5XYCgnnlyNMnnWtE-xEdf2hH10kuCObjGsCIF1dw8WOeiaJTXZf9D8ka9zzVJbmnr-7XuU_XfRCBc-c:QUQ3MjNmd19JOGkzY1B0eTdqdk5hWFdCM1VFSllkTElfRDgwSHdrYnJxb3F2bEFJdW1BWGk0bU9OeUNQM29QOUJSbFp5NjhkQ3cxZkZIMndSTWxYeE5udU52ZUN5TlNqbEJSekdhOTVuUDZxMmh6eURnVUliUTRWY1ZwZlN5aktMODhjb3RvZTM3ZmNMeVFNR2RHOUZsODRMb2R3UEk1Q0dB;__Secure-1PSIDTS=sidts-CjIBQT4rX2eFzivJ5aGfD2AoxNfqUElInCvHa7RPj2lB5bFbbkL6sYNndrqEuHbjFO5euxAA;__Secure-3PSIDTS=sidts-CjIBQT4rX2eFzivJ5aGfD2AoxNfqUElInCvHa7RPj2lB5bFbbkL6sYNndrqEuHbjFO5euxAA;SIDCC=AKEyXzVNTMBJ51O77UxGdzRip7Sh-LaCUCb9n7AD_AOt9FrpM5bxeyMx4RgG8Y6UiNg43tH03fs;__Secure-3PSIDCC=AKEyXzXmpdNDVC_qGGcqjdQztPZTU7BozK1QyOZ33o-yFrev1mnnQgZ0YQfPw8XxAqjnuMdAnwM;__Secure-1PSIDCC=AKEyXzWy2U4jWvXwPOn9DRoAzEdl0U2qkIhtxfbAT64z46zqCimAxL5XrrfDhvDrBaL0beKMsEA'
+[PYI-5760:ERROR] Failed to execute script '__main__' due to unhandled exception!
+
+[Fri, 29 Nov 2024 18:56:49 GMT] [src\slash_commands\music\play.ts] ChildProcessError: Usage: yt-dlp.exe [OPTIONS] URL [URL...]
+
+yt-dlp.exe: error: ambiguous option: --cookie (--cookies, --cookies-from-browser?)
+
+[Fri, 29 Nov 2024 19:00:13 GMT] [src\slash_commands\music\play.ts] ChildProcessError: Usage: yt-dlp.exe [OPTIONS] URL [URL...]
+
+yt-dlp.exe: error: ambiguous option: --cookie (--cookies, --cookies-from-browser?)
+
+[Fri, 29 Nov 2024 19:03:16 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+Traceback (most recent call last):
+  File "yt_dlp\__main__.py", line 17, in <module>
+  File "yt_dlp\__init__.py", line 1093, in main
+  File "yt_dlp\__init__.py", line 991, in _real_main
+  File "yt_dlp\YoutubeDL.py", line 990, in __exit__
+  File "yt_dlp\YoutubeDL.py", line 993, in close
+  File "yt_dlp\YoutubeDL.py", line 986, in save_cookies
+  File "yt_dlp\cookies.py", line 1314, in save
+  File "contextlib.py", line 135, in __enter__
+  File "yt_dlp\cookies.py", line 1269, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Administrator\\Github\\KaldaraMusicBot\\src\\src\\data\\cookies.txt'
+[PYI-6164:ERROR] Failed to execute script '__main__' due to unhandled exception!
+
+[Fri, 29 Nov 2024 19:06:02 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+Traceback (most recent call last):
+  File "yt_dlp\__main__.py", line 17, in <module>
+  File "yt_dlp\__init__.py", line 1093, in main
+  File "yt_dlp\__init__.py", line 991, in _real_main
+  File "yt_dlp\YoutubeDL.py", line 990, in __exit__
+  File "yt_dlp\YoutubeDL.py", line 993, in close
+  File "yt_dlp\YoutubeDL.py", line 986, in save_cookies
+  File "yt_dlp\cookies.py", line 1314, in save
+  File "contextlib.py", line 135, in __enter__
+  File "yt_dlp\cookies.py", line 1269, in open
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\Administrator\\Github\\KaldaraMusicBot\\src\\src\\data\\cookies.txt'
+[PYI-4092:ERROR] Failed to execute script '__main__' due to unhandled exception!
+
+[Fri, 29 Nov 2024 19:10:35 GMT] [src\slash_commands\music\play.ts] ChildProcessError: ERROR: [youtube] -BqMtpoRdb0: Sign in to confirm you�re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+
+[Fri, 29 Nov 2024 19:27:34 GMT] [src\slash_commands\music\play.ts] Error: While getting info from url
+Sign in to confirm you’re not a bot
