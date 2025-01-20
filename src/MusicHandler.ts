@@ -9,7 +9,7 @@ import queueSchema from "./schemas/queue-schema";
 import logDebug from "./logDebug";
 import client from "./index";
 import ffmpeg from 'fluent-ffmpeg';
-import youtubedl from 'youtube-dl-exec';
+import youtubedl, { Payload } from 'youtube-dl-exec';
 import play from 'play-dl';
 // import prism from 'prism-media';
 import { client_id, client_secret, refresh_token } from './data/spotify.json';
@@ -24,10 +24,6 @@ import playlistSchema from "./schemas/playlist-schema";
 play.setToken({
     spotify: { client_id, client_secret, refresh_token, market: 'US' }
 })
-// console.log("\n\n\n",cookies.map((v, i) => `${v.name}=${v.value}`).join(";"),"\n\n\n")
-// setTimeout(() => {
-//     play.authorization();
-// }, 5000);
 const embedFooter = {
     text: botName,
     iconURL: botImage
