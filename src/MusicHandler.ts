@@ -9,11 +9,7 @@ import queueSchema from "./schemas/queue-schema";
 import logDebug from "./logDebug";
 import client from "./index";
 import ffmpeg from 'fluent-ffmpeg';
-<<<<<<< HEAD
 import youtubedl from 'youtube-dl-exec';
-=======
-import youtubedl, { Payload } from 'youtube-dl-exec';
->>>>>>> 1584e19b25a509037b7c8fcb087b470c2dd5738f
 import play from 'play-dl';
 // import prism from 'prism-media';
 import { client_id, client_secret, refresh_token } from './data/spotify.json';
@@ -623,27 +619,10 @@ export class Song {
         let ffmpegPromise: Promise<any>;
         const volumeFactor = parseFloat((this.handler.volume / 1000).toPrecision(2));
         if (!existsSync(archFile)) {
-<<<<<<< HEAD
-            // const output:any = await youtubedl(this.url, {
-            //     format: 'bestaudio', // Get the best audio or change to "best" for video+audio
-            //     dumpSingleJson: true, // Return metadata in JSON format,
-            //     addHeader: ['referer:youtube.com', 'user-agent:googlebot'],
-            //       noCheckCertificates: true,
-            //         noWarnings: true
-            //                 });
-            const stream = await play.stream(this.url);
-            const volumeFactor = parseFloat((this.handler.volume / 1000).toPrecision(2));
-            if (existsSync(tmpFile)) {
-                await rmSync(tmpFile);
-            }
-            const ffmpegPromise = new Promise((resolve, reject) => {
-                ffmpeg(stream.stream)
-=======
             await this.createBufferedResource();
             ffmpegPromise = new Promise((resolve, reject) => {
                 this.audioStream = ffmpeg(`./src/temp/${this.id}-temp_audio.mp3`)
                     .inputFormat('mp3')
->>>>>>> 1584e19b25a509037b7c8fcb087b470c2dd5738f
                     .seekInput((seekInSeconds) ? seekInSeconds : 0)
                     .audioFilters(`volume=${volumeFactor}`) // Apply volume adjustment
                     .addOption('-bufsize', '500M')
