@@ -153,31 +153,53 @@ module.exports = {
                 let songIndex: Array<any> = [];
                 await handler.queue.moveSong(handler.queue.songs[_hoistedOptions[0].value - 1].id, _hoistedOptions[1].value);
 
-                handler.queue.songs.forEach((songData) => {
-                    const text = `**[${index}.]** [**${songData.name}**](${songData.url})\n┣━Duration: ** ${songData.durationRaw}**\n\t\t┗━Channel: ** ${songData.channel}**\n\n`;
-                    if (!textList[listIndex]) {
-                        textList[listIndex] = [];
-                    }
-                    if (!charCount[listIndex]) {
-                        charCount[listIndex] = 0;
-                    }
-                    if (!songIndex[listIndex]) {
-                        songIndex[listIndex] = [];
-                    }
-                    if (charCount[listIndex] > 3900) {
-                        listIndex++;
-                        textList[listIndex] = [];
-                        charCount[listIndex] = 0;
-                        songIndex[listIndex] = [];
-                    }
-                    textList[listIndex].push(text);
-                    songIndex[listIndex].push(songData);
-                    charCount[listIndex] += text.length;
-                    index++;
-                })
+                // handler.queue.songs.forEach((songData) => {
+                //     const text = `**[${index}.]** [**${songData.name}**](${songData.url})\n┣━Duration: ** ${songData.durationRaw}**\n\t\t┗━Channel: ** ${songData.channel}**\n\n`;
+                //     if (!textList[listIndex]) {
+                //         textList[listIndex] = [];
+                //     }
+                //     if (!charCount[listIndex]) {
+                //         charCount[listIndex] = 0;
+                //     }
+                //     if (!songIndex[listIndex]) {
+                //         songIndex[listIndex] = [];
+                //     }
+                //     if (charCount[listIndex] > 3900) {
+                //         listIndex++;
+                //         textList[listIndex] = [];
+                //         charCount[listIndex] = 0;
+                //         songIndex[listIndex] = [];
+                //     }
+                //     textList[listIndex].push(text);
+                //     songIndex[listIndex].push(songData);
+                //     charCount[listIndex] += text.length;
+                //     index++;
+                // })
                 const replyEmbed = new EmbedBuilder()
                     .setTitle(`**Queue Move Song**`)
                     .setDescription(`You have moved a song from position **${_hoistedOptions[0].value}** to **${_hoistedOptions[1].value}**.`)
+                    .setColor(Colors.Green)
+                    .setFooter(embedFooter)
+                interaction.editReply({
+                    embeds: [replyEmbed]
+                });
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 10000);
+            } else if (_subcommand === "remove_song") {
+                // Check if anything is playing currently
+                if (handler.queue.songs.length === 0) {
+                    throw "There is nothing in the queue.";
+                }
+                if (_hoistedOptions[0].value > handler.queue.songs.length) {
+                    throw "Invalid song position.";
+                }
+                const targetSong = handler.queue.songs[_hoistedOptions[0].value - 1];
+                await handler.queue.removeSong(targetSong.id);
+
+                const replyEmbed = new EmbedBuilder()
+                    .setTitle(`**Queue Remove Song**`)
+                    .setDescription(`You have removed **${targetSong.name}** from the queue.`)
                     .setColor(Colors.Green)
                     .setFooter(embedFooter)
                 interaction.editReply({
@@ -273,14 +295,26 @@ module.exports = {
                         .setName('old_position')
                         .setDescription('The old song position.')
                         .setRequired(true)
-                        .setMinValue(1)
+                        .setMinValue(2)
                 )
                 .addNumberOption(option =>
                     option
                         .setName('new_position')
                         .setDescription('Where the song will be placed.')
                         .setRequired(true)
-                        .setMinValue(1)
+                        .setMinValue(2)
+                )
+        )
+        .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
+            subcommand
+                .setName('remove_song')
+                .setDescription('Remove a song from the queue.')
+                .addNumberOption(option =>
+                    option
+                        .setName('position')
+                        .setDescription('The song\'s position.')
+                        .setRequired(true)
+                        .setMinValue(2)
                 )
         )
 

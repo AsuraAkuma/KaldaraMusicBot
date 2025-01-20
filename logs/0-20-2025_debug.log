@@ -1,0 +1,606 @@
+Start of debug log: Mon, 20 Jan 2025 20:39:10 GMT
+Format: [Timestamp] Message
+
+[Mon, 20 Jan 2025 20:39:10 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 20:42:57 GMT] Creating buffer file for song (29WAdrzHSJo).
+
+[Mon, 20 Jan 2025 20:43:13 GMT] Created audio stream for song (29WAdrzHSJo).
+
+[Mon, 20 Jan 2025 20:43:13 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 20:43:13 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 20:43:37 GMT] Removed temp audio file (./src/temp/29WAdrzHSJo-temp_audio.mp3)
+
+[Mon, 20 Jan 2025 20:43:37 GMT] Created audio stream for song (LiwvETSBoPA).
+
+[Mon, 20 Jan 2025 20:43:37 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 20:43:37 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 20:45:38 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 20:45:51 GMT] Cleared the queue for bot (1310116919403216997).
+
+[Mon, 20 Jan 2025 20:46:41 GMT] Creating buffer file for song (29WAdrzHSJo).
+
+[Mon, 20 Jan 2025 20:46:58 GMT] Created audio stream for song (29WAdrzHSJo).
+
+[Mon, 20 Jan 2025 20:46:58 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 20:46:58 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 20:47:51 GMT] Removed temp audio file (./src/temp/29WAdrzHSJo-temp_audio.mp3)
+
+[Mon, 20 Jan 2025 20:47:51 GMT] Created audio stream for song (LiwvETSBoPA).
+
+[Mon, 20 Jan 2025 20:47:51 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 20:47:51 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 20:51:37 GMT] Audio has finished playing.
+
+[Mon, 20 Jan 2025 20:54:43 GMT] Creating buffer file for song (-ybnOHBNZyA).
+
+[Mon, 20 Jan 2025 20:54:43 GMT] Creating buffer file for song (2Pzkh0qr48Y).
+
+[Mon, 20 Jan 2025 20:54:44 GMT] Created audio stream for song (-ybnOHBNZyA).
+
+[Mon, 20 Jan 2025 20:54:44 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 20:54:44 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 20:54:44 GMT] Created buffer file (./src/temp/-ybnOHBNZyA-temp_audio.mp3) for song (-ybnOHBNZyA).
+
+[Mon, 20 Jan 2025 20:54:44 GMT] Copied buffer file (./src/temp/-ybnOHBNZyA-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 20:54:45 GMT] Created buffer file (./src/temp/2Pzkh0qr48Y-temp_audio.mp3) for song (2Pzkh0qr48Y).
+
+[Mon, 20 Jan 2025 20:54:45 GMT] Copied buffer file (./src/temp/2Pzkh0qr48Y-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 20:54:47 GMT] Creating buffer file for song (2Pzkh0qr48Y).
+
+[Mon, 20 Jan 2025 20:54:49 GMT] Created buffer file (./src/temp/2Pzkh0qr48Y-temp_audio.mp3) for song (2Pzkh0qr48Y).
+
+[Mon, 20 Jan 2025 20:54:49 GMT] Copied buffer file (./src/temp/2Pzkh0qr48Y-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 20:56:13 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 20:57:50 GMT] Created audio stream for song (2Pzkh0qr48Y).
+
+[Mon, 20 Jan 2025 20:57:51 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 20:57:51 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 20:57:53 GMT] Creating buffer file for song (2rlkKix7lrQ).
+
+[Mon, 20 Jan 2025 20:57:56 GMT] Created buffer file (./src/temp/2rlkKix7lrQ-temp_audio.mp3) for song (2rlkKix7lrQ).
+
+[Mon, 20 Jan 2025 20:57:56 GMT] Copied buffer file (./src/temp/2rlkKix7lrQ-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:00:45 GMT] Creating buffer file for song (WWqHgtbGyDY).
+
+[Mon, 20 Jan 2025 21:00:47 GMT] Created buffer file (./src/temp/WWqHgtbGyDY-temp_audio.mp3) for song (WWqHgtbGyDY).
+
+[Mon, 20 Jan 2025 21:00:47 GMT] Copied buffer file (./src/temp/WWqHgtbGyDY-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:00:48 GMT] Creating buffer file for song (WWqHgtbGyDY).
+
+[Mon, 20 Jan 2025 21:00:49 GMT] Created audio stream for song (WWqHgtbGyDY).
+
+[Mon, 20 Jan 2025 21:00:49 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:00:49 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:00:50 GMT] Created buffer file (./src/temp/WWqHgtbGyDY-temp_audio.mp3) for song (WWqHgtbGyDY).
+
+[Mon, 20 Jan 2025 21:00:50 GMT] Copied buffer file (./src/temp/WWqHgtbGyDY-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:04:01 GMT] Removed temp audio file (./src/temp/WWqHgtbGyDY-temp_audio.mp3)
+
+[Mon, 20 Jan 2025 21:04:01 GMT] Created audio stream for song (2rlkKix7lrQ).
+
+[Mon, 20 Jan 2025 21:04:01 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:04:01 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:04:04 GMT] Creating buffer file for song (3_umUPVwrq8).
+
+[Mon, 20 Jan 2025 21:04:05 GMT] Created buffer file (./src/temp/3_umUPVwrq8-temp_audio.mp3) for song (3_umUPVwrq8).
+
+[Mon, 20 Jan 2025 21:04:05 GMT] Copied buffer file (./src/temp/3_umUPVwrq8-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:04:58 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 21:05:31 GMT] Cleared the queue for bot (1310116919403216997).
+
+[Mon, 20 Jan 2025 21:05:46 GMT] Creating buffer file for song (Z99r74EMWP8).
+
+[Mon, 20 Jan 2025 21:05:48 GMT] Created buffer file (./src/temp/Z99r74EMWP8-temp_audio.mp3) for song (Z99r74EMWP8).
+
+[Mon, 20 Jan 2025 21:05:48 GMT] Copied buffer file (./src/temp/Z99r74EMWP8-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:05:50 GMT] Creating buffer file for song (Z99r74EMWP8).
+
+[Mon, 20 Jan 2025 21:05:50 GMT] Created audio stream for song (Z99r74EMWP8).
+
+[Mon, 20 Jan 2025 21:05:50 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:05:51 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:05:51 GMT] Created buffer file (./src/temp/Z99r74EMWP8-temp_audio.mp3) for song (Z99r74EMWP8).
+
+[Mon, 20 Jan 2025 21:05:51 GMT] Copied buffer file (./src/temp/Z99r74EMWP8-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:05:56 GMT] Creating buffer file for song (fCeiUX59_FM).
+
+[Mon, 20 Jan 2025 21:05:58 GMT] Created buffer file (./src/temp/fCeiUX59_FM-temp_audio.mp3) for song (fCeiUX59_FM).
+
+[Mon, 20 Jan 2025 21:05:58 GMT] Copied buffer file (./src/temp/fCeiUX59_FM-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:06:22 GMT] Added song (TLtEWrk7n8w).
+
+[Mon, 20 Jan 2025 21:06:25 GMT] Creating buffer file for song (TLtEWrk7n8w).
+
+[Mon, 20 Jan 2025 21:06:26 GMT] Created buffer file (./src/temp/TLtEWrk7n8w-temp_audio.mp3) for song (TLtEWrk7n8w).
+
+[Mon, 20 Jan 2025 21:06:26 GMT] Copied buffer file (./src/temp/TLtEWrk7n8w-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:08:00 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 21:21:51 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:22:22 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:26:50 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1312ZAYpw7aeRQ8GMkbJux).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1pEZ3bgj9vW9ODeyAa5pIR).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-3IFZLTfuTznbHXTwkWDjeV).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-0eaVIYo2zeOaGJeqZ5TwYz).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-4H4jOiCiaj8175uPsadr2k).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-5AJ9hqTS2wcFQCELCFRO7A).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1jKXjxMWlq4BhH6f9GtZbu).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-0XxXIiZP0rJBS8S841UVdu).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-5iqqMs1qSYD2lRt4mW5nqT).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-5de9Ho64dovuQI8Uhn5gPD).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-5v1M6QUC8IJanaKQbAQr8T).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-6Xs35Xgawpp7Hzc7qtOKMz).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-40TZnaw4eDPChJNHw2Swf3).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-5e0b9LgOfi3aJSKXFcOWRe).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1cnywZiOldWgUfxAtJekLM).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-2zPoFw39nPZHdPrF7ZO7po).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-0W1cgSdTegKjqbDUWlm44E).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-4tXlm992qvevZGLxNg9wms).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-5MkQyLevPrJJuQ2PG0rmdC).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-0sTjyzgd2K5htQpU8ienNe).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-4Na2HfNSr58chvfX69fy36).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-4rJHH484bHZDts51o5i2CB).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-6Q7VNHFddOwgHTH1WxBIcU).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1XBYiRV30ykHw5f4wm6qEn).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1zKete7UUqmFzq2y5e3adT).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-0bmVH05tjN9jVh3kB1TfpR).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-3oUc8aFY8HaJbFZeoGR40U).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1XoSxbGeItsxcv5RCMWucE).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-74kNeUIhYkQHoWxXODvWJG).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-7KA4W4McWYRpgf0fWsJZWB).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-2fadrikKAPlypHJWhvv8CM).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-2kqNGpVKg980TWDndDZoNA).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-30jui3PqevssdIVpjEWM38).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-3HDsUtYD9XztWhwQY2smjt).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-6LZu7XhS7DwC1x1mrXuffu).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1PJBTrGuNdR8Ph0IALKdOw).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-2CGNAOSuO1MEFCbBRgUzjd).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-2ncHgB3JjvnY4YcoMo8tGl).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-0uU6wpqMrSe8SuIAJNIje9).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1GnTBbaFtxNkHEjUsWEdNu).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-2c7z5oRcPBbqRaBY2mLWcf).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-6jlG8gBPNAgBgoivw2Ig09).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1PuqEh2PvV8IuUyguWUyw7).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1nKVRhOSBIeRzR30ECSesC).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-28drn6tQo95MRvO0jQEo5C).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1YarX6kRpzU78uOajz6pE9).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1ZRNznOEOgyRO0wSzoP0sj).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-6yUZnIAHveOpxGfscm0kMX).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-27Oxlc6vaANSvTiOvxUu96).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-37xM5UFUHSVBISEJWTYwvn).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-1LJf3nm1uyWUq1NP61Ea5W).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-0ZUhSat1BWMdpcfqdL28dU).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-2Dr6LbfkCNcbja2jprW687).
+
+[Mon, 20 Jan 2025 21:28:03 GMT] Added song (SP-6zg431pIV64icWpxl46rzk).
+
+[Mon, 20 Jan 2025 21:28:05 GMT] Added song (e7c8vDl39IY).
+
+[Mon, 20 Jan 2025 21:28:05 GMT] Removed song (SP-1312ZAYpw7aeRQ8GMkbJux).
+
+[Mon, 20 Jan 2025 21:28:08 GMT] Creating buffer file for song (e7c8vDl39IY).
+
+[Mon, 20 Jan 2025 21:28:09 GMT] Created buffer file (./src/temp/e7c8vDl39IY-temp_audio.mp3) for song (e7c8vDl39IY).
+
+[Mon, 20 Jan 2025 21:28:09 GMT] Copied buffer file (./src/temp/e7c8vDl39IY-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:28:12 GMT] Creating buffer file for song (e7c8vDl39IY).
+
+[Mon, 20 Jan 2025 21:28:12 GMT] Created audio stream for song (e7c8vDl39IY).
+
+[Mon, 20 Jan 2025 21:28:12 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:28:13 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:28:13 GMT] Created buffer file (./src/temp/e7c8vDl39IY-temp_audio.mp3) for song (e7c8vDl39IY).
+
+[Mon, 20 Jan 2025 21:28:13 GMT] Copied buffer file (./src/temp/e7c8vDl39IY-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:28:14 GMT] Added song (3naF__vNLK4).
+
+[Mon, 20 Jan 2025 21:28:14 GMT] Removed song (SP-1pEZ3bgj9vW9ODeyAa5pIR).
+
+[Mon, 20 Jan 2025 21:28:17 GMT] Creating buffer file for song (3naF__vNLK4).
+
+[Mon, 20 Jan 2025 21:28:18 GMT] Created buffer file (./src/temp/3naF__vNLK4-temp_audio.mp3) for song (3naF__vNLK4).
+
+[Mon, 20 Jan 2025 21:28:18 GMT] Copied buffer file (./src/temp/3naF__vNLK4-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:29:41 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 21:30:40 GMT] Added song (SP-1312ZAYpw7aeRQ8GMkbJux).
+
+[Mon, 20 Jan 2025 21:30:40 GMT] Added song (SP-1pEZ3bgj9vW9ODeyAa5pIR).
+
+[Mon, 20 Jan 2025 21:30:41 GMT] Removed song (SP-4H4jOiCiaj8175uPsadr2k).
+
+[Mon, 20 Jan 2025 21:30:41 GMT] Created audio stream for song (Z99r74EMWP8).
+
+[Mon, 20 Jan 2025 21:30:42 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:30:42 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:30:43 GMT] Removed song (SP-0eaVIYo2zeOaGJeqZ5TwYz).
+
+[Mon, 20 Jan 2025 21:32:51 GMT] Created audio stream for song (fCeiUX59_FM).
+
+[Mon, 20 Jan 2025 21:32:51 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:32:51 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:32:52 GMT] Removed song (SP-3IFZLTfuTznbHXTwkWDjeV).
+
+[Mon, 20 Jan 2025 21:35:59 GMT] Created audio stream for song (TLtEWrk7n8w).
+
+[Mon, 20 Jan 2025 21:35:59 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:35:59 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:36:00 GMT] Added song (W92I--oVxOI).
+
+[Mon, 20 Jan 2025 21:36:00 GMT] Removed song (SP-5MkQyLevPrJJuQ2PG0rmdC).
+
+[Mon, 20 Jan 2025 21:36:03 GMT] Creating buffer file for song (W92I--oVxOI).
+
+[Mon, 20 Jan 2025 21:36:05 GMT] Created buffer file (./src/temp/W92I--oVxOI-temp_audio.mp3) for song (W92I--oVxOI).
+
+[Mon, 20 Jan 2025 21:36:05 GMT] Copied buffer file (./src/temp/W92I--oVxOI-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:37:41 GMT] Created audio stream for song (W92I--oVxOI).
+
+[Mon, 20 Jan 2025 21:37:41 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:37:41 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:37:43 GMT] Added song (d6GjSxPMq0w).
+
+[Mon, 20 Jan 2025 21:37:43 GMT] Removed song (SP-4rJHH484bHZDts51o5i2CB).
+
+[Mon, 20 Jan 2025 21:37:46 GMT] Creating buffer file for song (d6GjSxPMq0w).
+
+[Mon, 20 Jan 2025 21:37:48 GMT] Created buffer file (./src/temp/d6GjSxPMq0w-temp_audio.mp3) for song (d6GjSxPMq0w).
+
+[Mon, 20 Jan 2025 21:37:48 GMT] Copied buffer file (./src/temp/d6GjSxPMq0w-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:38:52 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 21:38:53 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:38:59 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:39:35 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:41:20 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:41:34 GMT] Created audio stream for song (W92I--oVxOI).
+
+[Mon, 20 Jan 2025 21:41:34 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:41:34 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:41:36 GMT] Added song (Zf1d8SGuxfs).
+
+[Mon, 20 Jan 2025 21:41:36 GMT] Removed song (SP-5AJ9hqTS2wcFQCELCFRO7A).
+
+[Mon, 20 Jan 2025 21:41:39 GMT] Creating buffer file for song (Zf1d8SGuxfs).
+
+[Mon, 20 Jan 2025 21:41:41 GMT] Created buffer file (./src/temp/Zf1d8SGuxfs-temp_audio.mp3) for song (Zf1d8SGuxfs).
+
+[Mon, 20 Jan 2025 21:41:41 GMT] Copied buffer file (./src/temp/Zf1d8SGuxfs-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:42:02 GMT] Added song (jQGqtCalg9Y).
+
+[Mon, 20 Jan 2025 21:42:02 GMT] Removed song (SP-1jKXjxMWlq4BhH6f9GtZbu).
+
+[Mon, 20 Jan 2025 21:42:05 GMT] Creating buffer file for song (jQGqtCalg9Y).
+
+[Mon, 20 Jan 2025 21:42:06 GMT] Created buffer file (./src/temp/jQGqtCalg9Y-temp_audio.mp3) for song (jQGqtCalg9Y).
+
+[Mon, 20 Jan 2025 21:42:06 GMT] Copied buffer file (./src/temp/jQGqtCalg9Y-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:43:00 GMT] Created audio stream for song (jQGqtCalg9Y).
+
+[Mon, 20 Jan 2025 21:43:00 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:43:00 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:43:01 GMT] Added song (2f0dAnfp5BM).
+
+[Mon, 20 Jan 2025 21:43:01 GMT] Removed song (SP-0XxXIiZP0rJBS8S841UVdu).
+
+[Mon, 20 Jan 2025 21:43:05 GMT] Creating buffer file for song (2f0dAnfp5BM).
+
+[Mon, 20 Jan 2025 21:43:06 GMT] Created buffer file (./src/temp/2f0dAnfp5BM-temp_audio.mp3) for song (2f0dAnfp5BM).
+
+[Mon, 20 Jan 2025 21:43:06 GMT] Copied buffer file (./src/temp/2f0dAnfp5BM-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:45:07 GMT] Removed temp audio file (./src/temp/jQGqtCalg9Y-temp_audio.mp3)
+
+[Mon, 20 Jan 2025 21:45:07 GMT] Created audio stream for song (2f0dAnfp5BM).
+
+[Mon, 20 Jan 2025 21:45:07 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:45:07 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:45:08 GMT] Added song (40VcPdJJaDQ).
+
+[Mon, 20 Jan 2025 21:45:08 GMT] Removed song (SP-5iqqMs1qSYD2lRt4mW5nqT).
+
+[Mon, 20 Jan 2025 21:45:11 GMT] Creating buffer file for song (40VcPdJJaDQ).
+
+[Mon, 20 Jan 2025 21:45:12 GMT] Created buffer file (./src/temp/40VcPdJJaDQ-temp_audio.mp3) for song (40VcPdJJaDQ).
+
+[Mon, 20 Jan 2025 21:45:13 GMT] Copied buffer file (./src/temp/40VcPdJJaDQ-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:47:13 GMT] Removed temp audio file (./src/temp/2f0dAnfp5BM-temp_audio.mp3)
+
+[Mon, 20 Jan 2025 21:47:14 GMT] Created audio stream for song (40VcPdJJaDQ).
+
+[Mon, 20 Jan 2025 21:47:14 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:47:14 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:48:59 GMT] Removed temp audio file (./src/temp/40VcPdJJaDQ-temp_audio.mp3)
+
+[Mon, 20 Jan 2025 21:48:59 GMT] Created audio stream for song (Zf1d8SGuxfs).
+
+[Mon, 20 Jan 2025 21:48:59 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:48:59 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:49:01 GMT] Added song (UZfsXqkw1jw).
+
+[Mon, 20 Jan 2025 21:49:01 GMT] Removed song (SP-5de9Ho64dovuQI8Uhn5gPD).
+
+[Mon, 20 Jan 2025 21:49:03 GMT] Creating buffer file for song (UZfsXqkw1jw).
+
+[Mon, 20 Jan 2025 21:49:04 GMT] Created buffer file (./src/temp/UZfsXqkw1jw-temp_audio.mp3) for song (UZfsXqkw1jw).
+
+[Mon, 20 Jan 2025 21:49:04 GMT] Copied buffer file (./src/temp/UZfsXqkw1jw-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:51:46 GMT] Removed temp audio file (./src/temp/Zf1d8SGuxfs-temp_audio.mp3)
+
+[Mon, 20 Jan 2025 21:51:46 GMT] Created audio stream for song (UZfsXqkw1jw).
+
+[Mon, 20 Jan 2025 21:51:46 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:51:46 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:51:48 GMT] Added song (kHJm1NdAiq4).
+
+[Mon, 20 Jan 2025 21:51:48 GMT] Removed song (SP-5v1M6QUC8IJanaKQbAQr8T).
+
+[Mon, 20 Jan 2025 21:51:51 GMT] Creating buffer file for song (kHJm1NdAiq4).
+
+[Mon, 20 Jan 2025 21:51:52 GMT] Created buffer file (./src/temp/kHJm1NdAiq4-temp_audio.mp3) for song (kHJm1NdAiq4).
+
+[Mon, 20 Jan 2025 21:51:52 GMT] Copied buffer file (./src/temp/kHJm1NdAiq4-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:52:30 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 21:52:30 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:53:28 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:53:46 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:54:43 GMT] No video details found.
+
+[Mon, 20 Jan 2025 21:55:09 GMT] Created audio stream for song (UZfsXqkw1jw).
+
+[Mon, 20 Jan 2025 21:55:10 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:55:10 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:55:11 GMT] Added song (M7gWwxG6OHY).
+
+[Mon, 20 Jan 2025 21:55:11 GMT] Removed song (SP-6Xs35Xgawpp7Hzc7qtOKMz).
+
+[Mon, 20 Jan 2025 21:55:15 GMT] Creating buffer file for song (M7gWwxG6OHY).
+
+[Mon, 20 Jan 2025 21:55:17 GMT] Created buffer file (./src/temp/M7gWwxG6OHY-temp_audio.mp3) for song (M7gWwxG6OHY).
+
+[Mon, 20 Jan 2025 21:55:17 GMT] Copied buffer file (./src/temp/M7gWwxG6OHY-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:55:32 GMT] Added song (fXF59UWr-tA).
+
+[Mon, 20 Jan 2025 21:55:32 GMT] Removed song (SP-40TZnaw4eDPChJNHw2Swf3).
+
+[Mon, 20 Jan 2025 21:55:34 GMT] Creating buffer file for song (fXF59UWr-tA).
+
+[Mon, 20 Jan 2025 21:55:36 GMT] Created buffer file (./src/temp/fXF59UWr-tA-temp_audio.mp3) for song (fXF59UWr-tA).
+
+[Mon, 20 Jan 2025 21:55:36 GMT] Copied buffer file (./src/temp/fXF59UWr-tA-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 21:56:38 GMT] Created audio stream for song (fXF59UWr-tA).
+
+[Mon, 20 Jan 2025 21:56:38 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 21:56:38 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 21:56:40 GMT] Added song (tERTBPdVivc).
+
+[Mon, 20 Jan 2025 21:56:40 GMT] Removed song (SP-5e0b9LgOfi3aJSKXFcOWRe).
+
+[Mon, 20 Jan 2025 21:56:42 GMT] Creating buffer file for song (tERTBPdVivc).
+
+[Mon, 20 Jan 2025 21:56:44 GMT] Created buffer file (./src/temp/tERTBPdVivc-temp_audio.mp3) for song (tERTBPdVivc).
+
+[Mon, 20 Jan 2025 21:56:44 GMT] Copied buffer file (./src/temp/tERTBPdVivc-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 22:06:29 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 22:06:29 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:06:29 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:06:29 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:06:40 GMT] Created audio stream for song (fXF59UWr-tA).
+
+[Mon, 20 Jan 2025 22:06:40 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 22:06:40 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 22:06:42 GMT] Added song (L6pJCUkZMiE).
+
+[Mon, 20 Jan 2025 22:06:42 GMT] Removed song (SP-0W1cgSdTegKjqbDUWlm44E).
+
+[Mon, 20 Jan 2025 22:06:45 GMT] Creating buffer file for song (L6pJCUkZMiE).
+
+[Mon, 20 Jan 2025 22:06:47 GMT] Created buffer file (./src/temp/L6pJCUkZMiE-temp_audio.mp3) for song (L6pJCUkZMiE).
+
+[Mon, 20 Jan 2025 22:06:47 GMT] Copied buffer file (./src/temp/L6pJCUkZMiE-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 22:08:11 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 22:08:11 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:08:11 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:08:11 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:08:11 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:08:13 GMT] Created audio stream for song (fXF59UWr-tA).
+
+[Mon, 20 Jan 2025 22:08:13 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 22:08:13 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 22:08:15 GMT] Added song (86kPjLvo86M).
+
+[Mon, 20 Jan 2025 22:08:15 GMT] Removed song (SP-2c7z5oRcPBbqRaBY2mLWcf).
+
+[Mon, 20 Jan 2025 22:08:19 GMT] Creating buffer file for song (86kPjLvo86M).
+
+[Mon, 20 Jan 2025 22:08:21 GMT] Created buffer file (./src/temp/86kPjLvo86M-temp_audio.mp3) for song (86kPjLvo86M).
+
+[Mon, 20 Jan 2025 22:08:21 GMT] Copied buffer file (./src/temp/86kPjLvo86M-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 22:10:21 GMT] Created audio stream for song (86kPjLvo86M).
+
+[Mon, 20 Jan 2025 22:10:21 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 22:10:21 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 22:10:23 GMT] Added song (E6B7UhFFacg).
+
+[Mon, 20 Jan 2025 22:10:23 GMT] Removed song (SP-4tXlm992qvevZGLxNg9wms).
+
+[Mon, 20 Jan 2025 22:10:26 GMT] Creating buffer file for song (E6B7UhFFacg).
+
+[Mon, 20 Jan 2025 22:10:28 GMT] Created buffer file (./src/temp/E6B7UhFFacg-temp_audio.mp3) for song (E6B7UhFFacg).
+
+[Mon, 20 Jan 2025 22:10:28 GMT] Copied buffer file (./src/temp/E6B7UhFFacg-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 22:13:34 GMT] Cleared temp folder (./src/temp).
+
+[Mon, 20 Jan 2025 22:13:34 GMT] No video details found.
+
+[Mon, 20 Jan 2025 22:13:42 GMT] Created audio stream for song (86kPjLvo86M).
+
+[Mon, 20 Jan 2025 22:13:42 GMT] Audio is now buffering!
+
+[Mon, 20 Jan 2025 22:13:42 GMT] Audio is now playing!
+
+[Mon, 20 Jan 2025 22:13:44 GMT] Added song (SMvmAWECT8U).
+
+[Mon, 20 Jan 2025 22:13:44 GMT] Removed song (SP-6jlG8gBPNAgBgoivw2Ig09).
+
+[Mon, 20 Jan 2025 22:13:47 GMT] Creating buffer file for song (SMvmAWECT8U).
+
+[Mon, 20 Jan 2025 22:13:49 GMT] Created buffer file (./src/temp/SMvmAWECT8U-temp_audio.mp3) for song (SMvmAWECT8U).
+
+[Mon, 20 Jan 2025 22:13:49 GMT] Copied buffer file (./src/temp/SMvmAWECT8U-temp_audio.mp3) to archive folder.
+
+[Mon, 20 Jan 2025 22:14:06 GMT] Cleared temp folder (./src/temp).

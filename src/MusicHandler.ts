@@ -154,22 +154,16 @@ export class MusicHandler {
         if (this.isPlaying === false) {
             throw `There is nothing currently playing.`;
         }
-        if (this.songDownloading === this.nowPlaying?.id) {
-            await this.downloading.kill("SIGINT");
-            this.downloading = null;
-            this.songDownloading = null;
-        }
-        setTimeout(async () => {
-            this.nowPlaying?.audioStream?.destroy();
-            await this.queue.clear();
-            this.player.stop(true);
-            this.isAutoplay = false;
-            this.isRepeatAll = false;
-            this.isRepeatSingle = false;
-            this.nowPlaying = null;
-            this.isPlaying = false;
-            this.isPaused = false;
-        }, 2000);
+        await this.stopDownload();
+        this.nowPlaying?.audioStream?.destroy();
+        await this.queue.clear();
+        this.player.stop(true);
+        this.isAutoplay = false;
+        this.isRepeatAll = false;
+        this.isRepeatSingle = false;
+        this.nowPlaying = null;
+        this.isPlaying = false;
+        this.isPaused = false;
 
     }
     async seek(seconds: number) {
@@ -199,17 +193,17 @@ export class MusicHandler {
         if (!this.nowPlaying) {
             throw `There is nothing currently playing.`;
         }
+        await this.stopDownload();
+        this.nowPlaying?.audioStream?.destroy();
+        this.player.stop(true);
+    }
+    async stopDownload() {
         if (this.songDownloading === this.nowPlaying?.id) {
             await this.downloading.kill("SIGINT");
             this.downloading = null;
             this.songDownloading = null;
         }
-        setTimeout(() => {
-            this.nowPlaying?.audioStream?.destroy();
-            this.player.stop(true);
-        }, 2000);
     }
-
     async setVolume(percent: number) {
         if (!(percent >= 0 && percent <= 100)) {
             throw new Error("The percent must be from 0 to 100");
@@ -571,9 +565,11 @@ export class Song {
         } else {
             const info2: dbSong = info;
             if (!info2) {
+                logDebug("No video details found.")
                 throw "No video details found.";
             }
             if (!info2.name) {
+                logDebug("No video title found.")
                 throw "No video title found.";
             }
             this.channel = info2.channel;
@@ -729,6 +725,17 @@ export class Song {
             this.thumbnail = (info.thumbnails[0]) ? info.thumbnails[0].url : null;
             this.handler = this.handler;
             this.type = "YouTubeVideo";
+            await queueSchema.findOneAndUpdate(
+                {
+                    _id: clientId
+                },
+                {
+                    songs: this.handler.queue.songs.map((v, i) => v.id)
+                },
+                {
+                    upsert: true
+                }
+            )
         }
         const archFile = `${__dirname}/archive/${this.id}-temp_audio.mp3`;
         const tmpFile = `./src/temp/${this.id}-temp_audio.mp3`;
@@ -764,11 +771,14 @@ export class Song {
                             }
                         });
                     })
-                    .on('error', reject)
+                    .on('error', async (err) => {
+                        await this.handler.queue.removeSong(this.id).catch((err) => { throw err; });
+                        reject(err);
+                    })
                     .run();
                 this.handler.songDownloading = this.id;
             });
-            await ffmpegPromise;
+            await ffmpegPromise.catch((err) => { throw err; });
         }
         return true;
     }
@@ -789,7 +799,12 @@ export class Queue {
                     // Get song data from db
                     songSchema.find({ _id: { $in: result1.songs } }).then((result2) => {
                         result1.songs.forEach((song) => {
-                            this.songs.push(new Song(result2.find((s) => s._id === song) as dbSong, this.handler));
+                            try {
+                                const songObj = new Song(result2.find((s) => s._id === song) as dbSong, this.handler);
+                                this.songs.push(songObj);
+                            } catch (error) {
+                                logError(error as Error, __filename)
+                            }
                         })
                     })
                 }
@@ -807,7 +822,7 @@ export class Queue {
     async addSong(url: string): Promise<Boolean> {
         let newSong: Song | null = null;
         if (url.includes('youtube.com') || url.includes('youtu.be')) {
-            const info: InfoData = await play.video_info(url);
+            const info: InfoData = await play.video_info(url).catch((err) => { throw err; });
             if (!info.video_details) {
                 throw "No video details found.";
             }
@@ -816,13 +831,13 @@ export class Queue {
             if (play.is_expired()) {
                 await play.refreshToken()
             }
-            const sp_data: SpotifyTrack | SpotifyAlbum | SpotifyPlaylist = await play.spotify(url)
+            const sp_data: SpotifyTrack | SpotifyAlbum | SpotifyPlaylist = await play.spotify(url).catch((err) => { throw err; })
             if (sp_data.type === 'track') {
                 const data = sp_data as SpotifyTrack;
                 const search = await play.search(`${data.name} ${data.artists.map((v, i) => v.name).join(" ")}`, {
                     limit: 1
-                });
-                const info: InfoData = await play.video_info(search[0].url);
+                }).catch((err) => { throw err; });
+                const info: InfoData = await play.video_info(search[0].url).catch((err) => { throw err; });
                 if (!info.video_details) {
                     throw "No video details found.";
                 }
@@ -831,15 +846,15 @@ export class Queue {
                 throw `This url is not a single song.`;
             }
         } else if (url.includes('soundcloud.com')) {
-            const sc_data: SoundCloudTrack | SoundCloudPlaylist = await play.soundcloud(url)
+            const sc_data: SoundCloudTrack | SoundCloudPlaylist = await play.soundcloud(url).catch((err) => { throw err; })
             if (sc_data.type !== 'track') {
                 throw "The url was not for a single song.";
             }
             const data: SoundCloudTrack = sc_data as SoundCloudTrack;
             const search = await play.search(`${data.name} by ${data.user.name}`, {
                 limit: 1
-            });
-            const info: InfoData = await play.video_info(search[0].url);
+            }).catch((err) => { throw err; });
+            const info: InfoData = await play.video_info(search[0].url).catch((err) => { throw err; });
             if (!info.video_details) {
                 throw "No video details found.";
             }
@@ -867,7 +882,7 @@ export class Queue {
         // Check if song is already in queue
         if (!this.songs.find((s: Song) => s.id === newSong.id)) {
             if (this.songs.length === 1) {
-                newSong.createBufferedResource();
+                await newSong.createBufferedResource();
             }
             this.songs.push(newSong);
         } else {
@@ -895,7 +910,7 @@ export class Queue {
         // Check if song is already in queue
         if (!this.songs.find((s: Song) => s.id === newSong.id)) {
             if (this.songs.length === 1) {
-                newSong.createBufferedResource();
+                await newSong.createBufferedResource();
             }
             this.songs.push(newSong);
         } else {
@@ -924,12 +939,12 @@ export class Queue {
         // }
         let newSongs: Song[] = [];
         if (url.includes('youtube.com')) {
-            const info: YouTubePlayList = await play.playlist_info(url);
+            const info: YouTubePlayList = await play.playlist_info(url).catch((err) => { throw err; });
             if (!info) {
                 throw "No playlist details found.";
             }
             // Get all songs within playlist
-            const allSongs: Array<YouTubeVideo> = await info.all_videos();
+            const allSongs: Array<YouTubeVideo> = await info.all_videos().catch((err) => { throw err; });
             if (allSongs.length === 0) {
                 throw `Was unable to find any songs in this playlist.`;
             }
@@ -942,7 +957,7 @@ export class Queue {
             // newSongs = await songlist.waitForFill() as Song[];
         } else if (url.includes('spotify.com')) {
             if (play.is_expired()) {
-                await play.refreshToken()
+                await play.refreshToken().catch((err) => { throw err; })
             }
             const sp_data: SpotifyTrack | SpotifyAlbum | SpotifyPlaylist | void = await play.spotify(url).catch((err) => { logError(err, __filename); return; })
             if (!sp_data) {
@@ -951,7 +966,7 @@ export class Queue {
             if (sp_data.type === 'playlist') {
                 const data = sp_data as SpotifyPlaylist;
                 // Get songs from playlist
-                const allSongs: Array<SpotifyTrack> = await data.all_tracks();
+                const allSongs: Array<SpotifyTrack> = await data.all_tracks().catch((err) => { throw err; });
                 if (allSongs.length === 0) {
                     throw `Was unable to find any songs in this playlist.`;
                 }
@@ -971,7 +986,7 @@ export class Queue {
             } else if (sp_data.type === 'album') {
                 const data = sp_data as SpotifyAlbum;
                 // Get songs from playlist
-                const allSongs: Array<SpotifyTrack> = await data.all_tracks();
+                const allSongs: Array<SpotifyTrack> = await data.all_tracks().catch((err) => { throw err; });
                 if (allSongs.length === 0) {
                     throw `Was unable to find any songs in this album.`;
                 }
@@ -992,11 +1007,11 @@ export class Queue {
                 throw `This url is not a playlist or album.`;
             }
         } else if (url.includes('soundcloud.com')) {
-            const sc_data = (await play.soundcloud(url)) as SoundCloudPlaylist
+            const sc_data = (await play.soundcloud(url).catch((err) => { throw err; })) as SoundCloudPlaylist
             if (sc_data.type !== 'playlist') {
                 throw `This url is not a playlist.`;
             }
-            const allSongs: Array<SoundCloudTrack> = await sc_data.all_tracks();
+            const allSongs: Array<SoundCloudTrack> = await sc_data.all_tracks().catch((err) => { throw err; });
             if (allSongs.length === 0) {
                 throw `Was unable to find any songs in this playlist.`;
             }
@@ -1021,10 +1036,10 @@ export class Queue {
             throw "No songs were found.";
         }
         // Check if song is in db
-        // const allSongs = await songSchema.find({ _id: { $in: songs.map((v, i) => v.id) } });
+        // const allSongs = await songSchema.find({ _id: { $in: newSongs.map((v, i) => v.id) } });
         newSongs.forEach(async (songData: Song) => {
             // if (!allSongs.find((song) => song._id === songData.id)) {
-            //     songSchema.create({
+            //     await songSchema.create({
             //         _id: songData.id,
             //         songURL: songData.url,
             //         name: songData.name,
@@ -1039,19 +1054,19 @@ export class Queue {
             if (!this.songs.find((s: Song) => s.id === songData.id)) {
                 this.songs.push(songData);
             }
-            // Update queue in db
-            await queueSchema.findOneAndUpdate(
-                {
-                    _id: clientId
-                },
-                {
-                    songs: this.songs.map((v, i) => v.id)
-                },
-                {
-                    upsert: true
-                }
-            )
         })
+        // Update queue in db
+        await queueSchema.findOneAndUpdate(
+            {
+                _id: clientId
+            },
+            {
+                songs: this.songs.map((v, i) => v.id)
+            },
+            {
+                upsert: true
+            }
+        )
         return true;
         function createArrayWaiter(targetLength: number) {
             const eventEmitter: EventEmitter = new EventEmitter();
@@ -1107,6 +1122,11 @@ export class Queue {
                 console.log(error)
             }
         }
+        if (this.songs[1].id === songId) {
+            await this.songs[2].createBufferedResource().catch((err) => {
+                throw err;
+            })
+        }
         // Check if song is in queue
         const targetSong = this.songs.find((s) => s.id === songId);
         if (!targetSong) {
@@ -1138,18 +1158,27 @@ export class Queue {
             throw `This position is not valid.`;
         }
         // Create new song list
-        let newList = new Array();
+        let newList: Song[] = new Array();
         this.songs.filter((song) => song.id !== songId).forEach((v, i) => {
             if (i === newPosition - 1) {
                 newList.push(targetSong);
             }
             newList.push(v);
         });
-        this.songs = newList;
         // Check if song is in correct position
-        if (this.songs[newPosition - 1].id !== songId) {
+        if (newList[newPosition - 1].id !== songId) {
             return false;
         }
+        if (this.songs[1].id !== newList[1].id) {
+            await newList[1].createBufferedResource().catch((err) => {
+                throw err;
+            })
+            const tmpFile = `./src/temp/${newList[1].id}-temp_audio.mp3`;
+            if (existsSync(tmpFile)) {
+                fs.rm(tmpFile, () => logDebug(`Removed temp audio file (${tmpFile})`));
+            }
+        }
+        this.songs = newList;
         // Update queue in db
         await queueSchema.findOneAndUpdate(
             {
