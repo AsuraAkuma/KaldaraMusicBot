@@ -1,0 +1,14 @@
+Start of debug log: Mon, 27 Jan 2025 21:55:23 GMT
+Format: [Timestamp] Message
+
+[Mon, 27 Jan 2025 21:55:23 GMT] Created audio stream for song (fCeiUX59_FM).
+
+[Mon, 27 Jan 2025 21:55:23 GMT] Audio is now buffering!
+
+[Mon, 27 Jan 2025 21:55:23 GMT] Audio is now playing!
+
+[Mon, 27 Jan 2025 21:55:27 GMT] Creating buffer file for song (lijFuLFI9RQ).
+
+[Mon, 27 Jan 2025 21:55:53 GMT] Audio has finished playing.
+
+[Mon, 27 Jan 2025 21:56:22 GMT] Cleared temp folder (./src/temp).

@@ -143,7 +143,9 @@ export class MusicHandler {
             if (!this.connection) {
                 throw "There is no connection.";
             }
-            const resource: any = await this.queue.songs[0].getBufferedResource();
+            const resource: any = await this.queue.songs[0].getBufferedResource().catch((err) => {
+                throw err;
+            });
             this.player.play(resource);
             this.connection.subscribe(this.player);
             this.isPlaying = true;
@@ -772,13 +774,35 @@ export class Song {
                         });
                     })
                     .on('error', async (err) => {
-                        await this.handler.queue.removeSong(this.id).catch((err) => { throw err; });
+                        await this.handler.queue.removeSong(this.id).catch((err) => {
+                            logError(err, __filename);
+                        });
                         reject(err);
                     })
                     .run();
                 this.handler.songDownloading = this.id;
             });
-            await ffmpegPromise.catch((err) => { throw err; });
+            await ffmpegPromise.catch(async (err) => {
+                logError(err, __filename);
+                // Check for commands channel
+                const result = await settingsSchema.findOne({ _id: this.handler.guild.id });
+
+                // Check for channel
+                const targetChannel: TextChannel = this.handler.guild.channels.cache.get(result?.channelId as string) as TextChannel;
+                if (targetChannel) {
+                    if (result?.channelId !== null) {
+                        const replyEmbed = new EmbedBuilder()
+                            .setTitle(`Error`)
+                            .setDescription(`I was unable to play the song **${this.name}**`)
+                            .setColor(Colors.Red)
+                            .setFooter(embedFooter)
+                        targetChannel.send({
+                            embeds: [replyEmbed]
+                        });
+
+                    }
+                }
+            });
         }
         return true;
     }
@@ -1122,7 +1146,7 @@ export class Queue {
                 console.log(error)
             }
         }
-        if (this.songs[1].id === songId) {
+        if (this.songs[1] && this.songs[1].id === songId && this.songs[2]) {
             await this.songs[2].createBufferedResource().catch((err) => {
                 throw err;
             })

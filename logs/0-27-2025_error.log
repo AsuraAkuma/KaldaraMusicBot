@@ -1,0 +1,8 @@
+Start of error log: Mon, 27 Jan 2025 21:55:53 GMT
+Format: [Timestamp] [Filename] Error: ErrorMessage
+
+[Mon, 27 Jan 2025 21:55:53 GMT] [] Error: Premature close
+
+[Mon, 27 Jan 2025 21:55:53 GMT] [music\play.ts] Error: EBUSY: resource busy or locked, unlink 'C:\Github\KaldaraMusicBot\src\temp\lijFuLFI9RQ-temp_audio.mp3'
+
+[Mon, 27 Jan 2025 21:55:53 GMT] [] Error: Cannot destroy VoiceConnection - it has already been destroyed

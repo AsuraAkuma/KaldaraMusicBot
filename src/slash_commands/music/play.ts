@@ -210,7 +210,9 @@ module.exports = {
                 if (!handler.connection) {
                     await handler.connect(member.voice.channel);
                 }
-                await handler.unpause();
+                await handler.unpause().catch((err) => {
+                    throw err;
+                });
                 const embed = new EmbedBuilder()
                     .setTitle(`**Play Unpause**`)
                     .setDescription(`You have unpaused the bot from playing.`)
