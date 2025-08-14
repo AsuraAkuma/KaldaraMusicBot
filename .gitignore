@@ -1,0 +1,14 @@
+/node_modules
+/archive
+/src/temp
+*/archive
+*/temp
+/ffmpeg
+/dist
+/src/ffmpeg-4.4
+/ffmpeg-snapshot.tar.bz2
+/KaldaraMusicBot.out
+/logs
+*/.data
+*/data
+*/config.json
