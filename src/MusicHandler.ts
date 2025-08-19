@@ -1,3 +1,4 @@
+// Main music handler for the bot. Manages music playback, queues, and integration with YouTube, Spotify, and SoundCloud.
 import { EmbedBuilder } from "@discordjs/builders";
 import { AudioPlayer, VoiceConnection, StreamType } from "@discordjs/voice";
 import { Channel, Colors, Guild, TextChannel, VoiceBasedChannel } from "discord.js";

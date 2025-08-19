@@ -1,3 +1,4 @@
+// Handles connection to MongoDB using mongoose for persistent data storage.
 import mongoose from 'mongoose';
 import { mongoPath } from './config.json'
 

@@ -1,3 +1,4 @@
+// Slash command for displaying and managing the current music queue in the music bot.
 import { SlashCommandBuilder, SlashCommandStringOption, SlashCommandSubcommandBuilder, Client, Interaction, CommandInteraction, GuildChannel, Guild, GuildMember, Colors, APIMessageComponentEmoji, ButtonStyle } from 'discord.js';
 import { botImage, botName, clientId } from '../../config.json';
 import { MusicHandler, Song, Queue } from '../../MusicHandler';

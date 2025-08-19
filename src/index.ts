@@ -1,3 +1,4 @@
+// Entry point for the Discord music bot. Initializes the Discord client, loads commands, and sets up event handlers.
 import { Client, IntentsBitField, Collection, EmbedBuilder, MessageCollector, InteractionCollector, ActionRowBuilder, ButtonBuilder, PermissionsBitField, ButtonStyle, ChannelType, Colors, Interaction, BaseInteraction, ButtonInteraction, Partials } from 'discord.js';
 import { clientId, token, botName, botImage, allowedGuilds } from './config.json';
 const { Routes } = require('discord-api-types/v9');

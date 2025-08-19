@@ -1,3 +1,4 @@
+// Script to start the bot server and check if it is running. Used for development and deployment automation.
 
 const { exec } = require('child_process');
 const { port } = require('./config.json');
@@ -9,7 +10,7 @@ const startCommand = 'npx ts-node src/index.ts'; // Command to start the server
  * @param {function} callback - The function to call with the result.
  */
 async function checkServer(callback: any) {
-    const testReq = await fetch(`http://127.0.0.1:${port}`, { method: 'GET', headers: { "Content-Type": 'application/json' } }).catch((err) => { console.log(err)});
+    const testReq = await fetch(`http://127.0.0.1:${port}`, { method: 'GET', headers: { "Content-Type": 'application/json' } }).catch((err) => { console.log(err) });
     if (!testReq) {
         callback(false);
     } else {

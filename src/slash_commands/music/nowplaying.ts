@@ -1,3 +1,4 @@
+// Slash command for showing the currently playing song and its details in the music bot.
 import { SlashCommandBuilder, SlashCommandStringOption, SlashCommandSubcommandBuilder, Client, Interaction, CommandInteraction, GuildChannel, Guild, GuildMember, Colors } from 'discord.js';
 import { botImage, botName, clientId } from '../../config.json';
 import { MusicHandler, Song, Queue } from '../../MusicHandler';

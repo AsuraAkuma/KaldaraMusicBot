@@ -1,3 +1,4 @@
+// Utility for logging error messages to daily log files in the logs directory.
 import fs from 'fs';
 import path from 'path';
 

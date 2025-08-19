@@ -1,3 +1,4 @@
+// Handles Discord button interactions for the music bot, including playback controls and playlist management.
 import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, SlashCommandStringOption, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } from "@discordjs/builders";
 import { APIMessage, APIMessageComponentEmoji, ApplicationCommand, ApplicationCommandOption, ApplicationCommandOptionType, ApplicationCommandSubCommand, BaseInteraction, ButtonInteraction, ButtonStyle, Client, Colors, Interaction } from "discord.js";
 import logError from "../logError";

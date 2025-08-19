@@ -1,3 +1,4 @@
+// Handles Discord select menu interactions for the music bot, such as song and playlist selection.
 import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } from "@discordjs/builders";
 import { AnySelectMenuInteraction, ButtonStyle, Client, Colors } from "discord.js";
 import logError from "../logError";

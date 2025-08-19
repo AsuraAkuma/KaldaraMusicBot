@@ -1,3 +1,4 @@
+// Slash command for displaying help information and usage instructions for the music bot.
 import { SlashCommandBuilder, SlashCommandStringOption, SlashCommandSubcommandBuilder, Client, Interaction, CommandInteraction, GuildChannel, Guild, GuildMember, Colors, APIMessageComponentEmoji, ButtonStyle, ApplicationCommand, ApplicationCommandOption, ApplicationCommandOptionType, ApplicationCommandSubCommand, ApplicationCommandSubGroup, Message, InteractionResponse } from 'discord.js';
 import { botImage, botName, clientId } from '../../config.json';
 import { MusicHandler, Song, Queue } from '../../MusicHandler';

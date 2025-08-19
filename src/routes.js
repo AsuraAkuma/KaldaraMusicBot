@@ -1,3 +1,4 @@
+// Express router for basic bot API endpoints (health check, stop command).
 const { exit } = require('process');
 
 const router = require("express").Router();
