@@ -21,6 +21,7 @@ import logError from "./logError";
 import settingsSchema from "./schemas/settings-schema";
 import path from "path";
 import playlistSchema from "./schemas/playlist-schema";
+import { verifySoundCloudURL, verifySpotifyURL, verifyYoutubeURL } from "./verifyURL";
 // import { cookies } from './data/cookies.json';
 play.setToken({
     spotify: { client_id, client_secret, refresh_token, market: 'US' }
@@ -870,13 +871,13 @@ export class Queue {
 
     async addSong(url: string): Promise<Boolean> {
         let newSong: Song | null = null;
-        if (url.startsWith('https://www.youtube.com') || url.startsWith('https://www.youtu.be')) {
+        if (await verifyYoutubeURL(url)) {
             const info: InfoData = await play.video_info(url).catch((err) => { throw err; });
             if (!info.video_details) {
                 throw "No video details found.";
             }
             newSong = new Song(info.video_details, this.handler);
-        } else if (url.startsWith('https://www.spotify.com')) {
+        } else if (await verifySpotifyURL(url)) {
             if (play.is_expired()) {
                 await play.refreshToken()
             }
@@ -894,7 +895,7 @@ export class Queue {
             } else {
                 throw `This url is not a single song.`;
             }
-        } else if (url.startsWith('https://www.soundcloud.com')) {
+        } else if (await verifySoundCloudURL(url)) {
             const sc_data: SoundCloudTrack | SoundCloudPlaylist = await play.soundcloud(url).catch((err) => { throw err; })
             if (sc_data.type !== 'track') {
                 throw "The url was not for a single song.";
@@ -1004,7 +1005,7 @@ export class Queue {
                 // songlist.addElement(new Song(songData, this.handler))
             })
             // newSongs = await songlist.waitForFill() as Song[];
-        } else if (url.startsWith('https://www.spotify.com')) {
+        } else if (await verifySpotifyURL(url)) {
             if (play.is_expired()) {
                 await play.refreshToken().catch((err) => { throw err; })
             }
@@ -1055,7 +1056,7 @@ export class Queue {
             } else {
                 throw `This url is not a playlist or album.`;
             }
-        } else if (url.startsWith('https://www.soundcloud.com')) {
+        } else if (await verifySoundCloudURL(url)) {
             const sc_data = (await play.soundcloud(url).catch((err) => { throw err; })) as SoundCloudPlaylist
             if (sc_data.type !== 'playlist') {
                 throw `This url is not a playlist.`;
