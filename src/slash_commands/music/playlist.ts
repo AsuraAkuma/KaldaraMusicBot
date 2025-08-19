@@ -164,14 +164,14 @@ module.exports = {
                 let newSong: Song | null = null;
                 const url = _hoistedOptions[0].value;
                 if (await verifyYoutubeURL(url)) {
-                    if (url.startsWith('https://www.youtube.com')) {
+                    if (await verifyYoutubeURL(url)) {
                         const id = url.split("=")[1].split("&")[0];
                         // Check for song data in db
                         const songData = await songSchema.findOne({ _id: id });
                         if (songData) {
                             newSong = new Song(songData as dbSong, handler);
                         }
-                    } else if (url.startsWith('https://www.youtu.be')) {
+                    } else if (await verifyYoutubeURL(url)) {
                         const id = url.split("be/")[1].split("?")[0];
                         // Check for song data in db
                         const songData = await songSchema.findOne({ _id: id });
@@ -382,7 +382,7 @@ module.exports = {
                 let newSongs: Song[] = await getSongs();
                 async function getSongs() {
                     let newSongs: Song[] = [];
-                    if (url.startsWith('https://www.youtube.com')) {
+                    if (await verifyYoutubeURL(url)) {
                         const info: YouTubePlayList = await play.playlist_info(url, { incomplete: true });
                         if (!info) {
                             throw "No playlist details found.";

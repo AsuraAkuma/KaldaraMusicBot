@@ -988,7 +988,7 @@ export class Queue {
         //     waitForFill(): Promise<unknown>
         // }
         let newSongs: Song[] = [];
-        if (url.startsWith('https://www.youtube.com')) {
+        if (await verifyYoutubeURL(url)) {
             const info: YouTubePlayList = await play.playlist_info(url).catch((err) => { throw err; });
             if (!info) {
                 throw "No playlist details found.";
