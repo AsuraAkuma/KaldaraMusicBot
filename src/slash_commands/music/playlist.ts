@@ -162,15 +162,15 @@ module.exports = {
                 }
                 let newSong: Song | null = null;
                 const url = _hoistedOptions[0].value;
-                if (url.includes('www.youtube.com') || url.includes('www.youtu.be')) {
-                    if (url.includes('www.youtube.com')) {
+                if (url.startsWith('https://www.youtube.com') || url.startsWith('https://www.youtu.be')) {
+                    if (url.startsWith('https://www.youtube.com')) {
                         const id = url.split("=")[1].split("&")[0];
                         // Check for song data in db
                         const songData = await songSchema.findOne({ _id: id });
                         if (songData) {
                             newSong = new Song(songData as dbSong, handler);
                         }
-                    } else if (url.includes('www.youtu.be')) {
+                    } else if (url.startsWith('https://www.youtu.be')) {
                         const id = url.split("be/")[1].split("?")[0];
                         // Check for song data in db
                         const songData = await songSchema.findOne({ _id: id });
@@ -184,7 +184,7 @@ module.exports = {
                         }
                         newSong = new Song(info.video_details, handler);
                     }
-                } else if (url.includes('www.spotify.com')) {
+                } else if (url.startsWith('https://www.spotify.com')) {
                     if (play.is_expired()) {
                         await play.refreshToken()
                     }
@@ -202,7 +202,7 @@ module.exports = {
                     } else {
                         throw `This url is not a single song.`;
                     }
-                } else if (url.includes('www.soundcloud.com')) {
+                } else if (url.startsWith('https://www.soundcloud.com')) {
                     const sc_data: SoundCloudTrack | SoundCloudPlaylist = await play.soundcloud(url)
                     if (sc_data.type !== 'track') {
                         throw "The url was not for a single song.";
@@ -381,7 +381,7 @@ module.exports = {
                 let newSongs: Song[] = await getSongs();
                 async function getSongs() {
                     let newSongs: Song[] = [];
-                    if (url.includes('www.youtube.com')) {
+                    if (url.startsWith('https://www.youtube.com')) {
                         const info: YouTubePlayList = await play.playlist_info(url, { incomplete: true });
                         if (!info) {
                             throw "No playlist details found.";
@@ -398,7 +398,7 @@ module.exports = {
                             // songlist.addElement(new Song(songData, this.handler))
                         })
                         // newSongs = await songlist.waitForFill() as Song[];
-                    } else if (url.includes('www.spotify.com')) {
+                    } else if (url.startsWith('https://www.spotify.com')) {
                         if (play.is_expired()) {
                             await play.refreshToken()
                         }
@@ -446,7 +446,7 @@ module.exports = {
                         } else {
                             throw `This url is not a playlist or album.`;
                         }
-                    } else if (url.includes('www.soundcloud.com')) {
+                    } else if (url.startsWith('https://www.soundcloud.com')) {
                         const sc_data = (await play.soundcloud(url)) as SoundCloudPlaylist
                         if (sc_data.type !== 'playlist') {
                             throw `This url is not a playlist.`;
